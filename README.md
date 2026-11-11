@@ -20,6 +20,7 @@ Spacja lub Enter też losuje kolejne słowo.
 
 - `index.html` – cała aplikacja
 - `slowa.js` – listy słów (generowane)
+- `ikony/`, `manifest.webmanifest` – ikona aplikacji (okrągłe logo) do karty przeglądarki i ekranu głównego
 - `karty/` – obrazy kart z literami, wyrenderowane z PDF-a zestawu kart (C7)
 - `narzedzia/build_words.py` – listy słów do edycji; po zmianie:
   `python3 narzedzia/build_words.py slowa.js`
