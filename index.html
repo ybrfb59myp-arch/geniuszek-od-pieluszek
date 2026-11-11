@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Geniuszek od Pieluszek – losuj słowo</title>
+<meta name="theme-color" content="#5E2D65">
+<link rel="icon" href="logo.png">
+<style>
+  :root {
+    --fiolet: #5E2D65;
+    --fiolet-ciemny: #47204d;
+    --bez: #F6C6B4;
+    --tlo: #FFF8F3;
+    --tekst: #3a2340;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--tlo);
+    color: var(--tekst);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    display: flex; flex-direction: column; min-height: 100dvh;
+    -webkit-tap-highlight-color: transparent;
+  }
+  header { display: flex; justify-content: center; padding: 18px 16px 4px; }
+  header img { height: 46px; width: auto; }
+
+  .panel {
+    display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; align-items: center;
+    padding: 14px 16px 6px;
+  }
+  .wybor { position: relative; }
+  select, button {
+    font: inherit; font-size: 20px; font-weight: 600; border-radius: 14px; height: 54px;
+  }
+  select {
+    appearance: none; -webkit-appearance: none;
+    padding: 0 46px 0 18px; color: var(--fiolet); background: #fff;
+    border: 2px solid var(--fiolet); cursor: pointer;
+  }
+  .wybor::after {
+    content: ""; position: absolute; right: 18px; top: 50%; width: 10px; height: 10px;
+    border-right: 3px solid var(--fiolet); border-bottom: 3px solid var(--fiolet);
+    transform: translateY(-70%) rotate(45deg); pointer-events: none;
+  }
+  button#losuj {
+    padding: 0 28px; border: 0; color: #fff; background: var(--fiolet); cursor: pointer;
+    box-shadow: 0 4px 0 var(--fiolet-ciemny); transition: transform .08s, box-shadow .08s;
+  }
+  button#losuj:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--fiolet-ciemny); }
+  button:focus-visible, select:focus-visible { outline: 3px solid var(--bez); outline-offset: 3px; }
+
+  main {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    padding: 16px 12px 24px; min-height: 260px;
+  }
+  #slowo { display: flex; align-items: center; }
+  .karta {
+    display: block; width: var(--w); height: calc(var(--w) * 0.7104);
+    border-radius: calc(var(--w) * 0.05);
+    box-shadow: 3px 2px 10px rgba(60, 20, 70, .22);
+    animation: wjazd .38s cubic-bezier(.2,.8,.3,1.2) both;
+    user-select: none; -webkit-user-drag: none;
+  }
+  @keyframes wjazd {
+    from { opacity: 0; transform: translateY(-26px) rotate(-3deg); }
+    to   { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) { .karta { animation: none; } }
+  .pusto { color: #8a6f8f; font-size: 18px; text-align: center; max-width: 30em; line-height: 1.5; }
+
+  details {
+    margin: 0 auto 18px; padding: 0 16px; max-width: 560px; width: 100%;
+    color: #6d5872; font-size: 15px;
+  }
+  summary { cursor: pointer; text-align: center; padding: 6px; list-style: none; }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "⚙︎ "; }
+  .opcje { background: #fff; border-radius: 14px; padding: 12px 16px; margin-top: 6px; box-shadow: 0 1px 4px rgba(0,0,0,.06); }
+  .opcje label { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; cursor: pointer; line-height: 1.35; }
+  .opcje input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--fiolet); }
+  .opcje small { display: block; color: #9a879e; }
+  #licznik { margin: 6px 0 0; color: #9a879e; text-align: right; }
+</style>
+</head>
+<body>
+<header><img src="logo.png" alt="Geniuszek od Pieluszek"></header>
+
+<div class="panel">
+  <label class="wybor">
+    <select id="dlugosc" aria-label="Długość słowa">
+      <option value="3">3 litery</option>
+      <option value="4">4 litery</option>
+      <option value="5">5 liter</option>
+      <option value="6">6 liter</option>
+    </select>
+  </label>
+  <button id="losuj" type="button">Losuj słowo</button>
+</div>
+
+<main>
+  <div id="slowo" role="img" aria-live="polite">
+    <p class="pusto">Wybierz długość słowa i naciśnij <b>Losuj słowo</b>.</p>
+  </div>
+</main>
+
+<details>
+  <summary>Ustawienia</summary>
+  <div class="opcje">
+    <label><input type="checkbox" id="zestaw" checked>
+      <span>Tylko słowa, które da się ułożyć z jednego zestawu kart
+      <small>Pomija np. „lala” czy „kubek”, bo w talii jest tylko jedna karta L i jedna K.</small></span></label>
+    <label><input type="checkbox" id="bezDwuznakow">
+      <span>Bez dwuznaków i zmiękczeń (sz, cz, ch, rz, dz, ni, si, ci, zi…)
+      <small>Przydatne przed etapem 4 – same pojedyncze litery.</small></span></label>
+    <p id="licznik"></p>
+  </div>
+</details>
+
+<script src="slowa.js"></script>
+<script>
+// Karty z talii: plik obrazka i jaka część karty (od lewej) chowa się pod poprzednią kartą,
+// tak żeby z każdej kolejnej karty była widoczna mała litera (albo cały dwuznak).
+const KARTY = {"a":{"f":"a.webp","h":0.5},"ą":{"f":"a-ogonek.webp","h":0.504},"b":{"f":"b.webp","h":0.475},"c":{"f":"c.webp","h":0.508},"ć":{"f":"c-kreska.webp","h":0.508},"d":{"f":"d.webp","h":0.492},"e":{"f":"e.webp","h":0.465},"ę":{"f":"e-ogonek.webp","h":0.465},"f":{"f":"f.webp","h":0.492},"g":{"f":"g.webp","h":0.504},"h":{"f":"h.webp","h":0.506},"i":{"f":"i.webp","h":0.479},"j":{"f":"j.webp","h":0.481},"k":{"f":"k.webp","h":0.5},"l":{"f":"l.webp","h":0.537},"ł":{"f":"l-kreska.webp","h":0.477},"m":{"f":"m.webp","h":0.477},"n":{"f":"n.webp","h":0.504},"ń":{"f":"n-kreska.webp","h":0.506},"o":{"f":"o.webp","h":0.5},"ó":{"f":"o-kreska.webp","h":0.504},"p":{"f":"p.webp","h":0.475},"r":{"f":"r.webp","h":0.533},"s":{"f":"s.webp","h":0.492},"ś":{"f":"s-kreska.webp","h":0.492},"t":{"f":"t.webp","h":0.515},"u":{"f":"u.webp","h":0.51},"w":{"f":"w.webp","h":0.577},"y":{"f":"y.webp","h":0.475},"z":{"f":"z.webp","h":0.494},"ź":{"f":"z-kreska.webp","h":0.494},"ż":{"f":"z-kropka.webp","h":0.494},"cz":{"f":"cz.webp","h":0.154},"ch":{"f":"ch.webp","h":0.131},"sz":{"f":"sz.webp","h":0.156},"rz":{"f":"rz.webp","h":0.204},"dż":{"f":"dz-kropka.webp","h":0.14},"dzi":{"f":"dzi.webp","h":0.065},"dź":{"f":"dz-kreska.webp","h":0.14},"ni":{"f":"ni.webp","h":0.208},"si":{"f":"si.webp","h":0.212},"ci":{"f":"ci.webp","h":0.208},"dz":{"f":"dz.webp","h":0.14},"zi":{"f":"zi.webp","h":0.21}};
+const PROPORCJA = 341 / 480;   // wysokość / szerokość karty
+const MAKS_SZER = 300;         // największa szerokość jednej karty w px
+
+const $ = id => document.getElementById(id);
+const el = { dl: $("dlugosc"), losuj: $("losuj"), slowo: $("slowo"), zestaw: $("zestaw"), bez: $("bezDwuznakow"), licznik: $("licznik") };
+
+// Zapamiętane ustawienia (jeśli przeglądarka pozwala).
+const pamiec = {
+  get(k, d) { try { const v = localStorage.getItem("gop_" + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem("gop_" + k, JSON.stringify(v)); } catch {} }
+};
+el.dl.value = String(pamiec.get("dl", 3));
+el.zestaw.checked = pamiec.get("zestaw", true);
+el.bez.checked = pamiec.get("bez", false);
+
+// Odfiltrowana pula słów dla bieżących ustawień.
+function pula() {
+  return (SLOWA[el.dl.value] || []).filter(x => (!el.zestaw.checked || x.z) && (!el.bez.checked || !x.d));
+}
+
+// „Worek” – losujemy bez powtórzeń, dopóki nie przejdziemy całej puli.
+let worek = [], kluczWorka = "", ostatnie = null, biezace = null;
+function klucz() { return [el.dl.value, el.zestaw.checked, el.bez.checked].join("|"); }
+function losujSlowo() {
+  const p = pula();
+  if (!p.length) return null;
+  if (kluczWorka !== klucz() || !worek.length) {
+    worek = p.slice();
+    for (let i = worek.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [worek[i], worek[j]] = [worek[j], worek[i]]; }
+    if (worek.length > 1 && ostatnie && worek[worek.length - 1].s === ostatnie) worek.unshift(worek.pop());
+    kluczWorka = klucz();
+  }
+  const x = worek.pop();
+  ostatnie = x.s;
+  return x;
+}
+
+function szerokoscKarty(karty) {
+  const jednostki = 1 + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
+  const dostepna = el.slowo.parentElement.clientWidth - 24;
+  const wysMaks = Math.max(140, window.innerHeight * 0.5);
+  return Math.floor(Math.min(MAKS_SZER, dostepna / jednostki, wysMaks / PROPORCJA));
+}
+
+function pokaz(x, animuj = true) {
+  biezace = x;
+  el.slowo.innerHTML = "";
+  if (!x) {
+    el.slowo.innerHTML = '<p class="pusto">Brak słów dla tych ustawień. Zmień długość albo ustawienia.</p>';
+    el.slowo.removeAttribute("aria-label");
+    return;
+  }
+  const w = szerokoscKarty(x.k);
+  el.slowo.style.setProperty("--w", w + "px");
+  el.slowo.setAttribute("aria-label", x.s);
+  x.k.forEach((k, i) => {
+    const img = document.createElement("img");
+    img.className = "karta";
+    img.src = "karty/" + KARTY[k].f;
+    img.alt = k;
+    img.draggable = false;
+    img.style.zIndex = String(x.k.length - i);          // pierwsza karta na wierzchu
+    if (i > 0) img.style.marginLeft = (-KARTY[k].h * w) + "px";
+    img.style.animationDelay = animuj ? (i * 90) + "ms" : "0ms";
+    if (!animuj) img.style.animation = "none";
+    el.slowo.appendChild(img);
+  });
+}
+
+function odswiezLicznik() {
+  const n = pula().length;
+  el.licznik.textContent = "W puli: " + n + (n === 1 ? " słowo" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? " słowa" : " słów");
+}
+
+el.losuj.addEventListener("click", () => pokaz(losujSlowo()));
+el.dl.addEventListener("change", () => { pamiec.set("dl", +el.dl.value); odswiezLicznik(); pokaz(losujSlowo()); });
+el.zestaw.addEventListener("change", () => { pamiec.set("zestaw", el.zestaw.checked); odswiezLicznik(); });
+el.bez.addEventListener("change", () => { pamiec.set("bez", el.bez.checked); odswiezLicznik(); });
+document.addEventListener("keydown", e => {
+  if ((e.key === " " || e.key === "Enter") && !["SELECT", "INPUT", "BUTTON", "SUMMARY"].includes(document.activeElement.tagName)) {
+    e.preventDefault(); pokaz(losujSlowo());
+  }
+});
+let tResize;
+window.addEventListener("resize", () => { clearTimeout(tResize); tResize = setTimeout(() => biezace && pokaz(biezace, false), 120); });
+
+// Wczytaj obrazki kart z wyprzedzeniem, żeby losowanie było natychmiastowe.
+Object.values(KARTY).forEach(k => { const i = new Image(); i.src = "karty/" + k.f; });
+odswiezLicznik();
+</script>
+</body>
+</html>
