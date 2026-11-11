@@ -1,0 +1,251 @@
+# Lista słów dla aplikacji Geniuszek od Pieluszek – źródło dla build_words.py.
+# Jedno lub więcej słów w wierszu, oddzielone spacjami. Wiersze zaczynające się od # są pomijane.
+# Grupę długości (3, 4, … 8, 9+) skrypt ustala sam, więc słowo można dopisać w dowolnym miejscu.
+#
+# Jak powstała lista (listopad 2026):
+#  - kandydaci: rzeczowniki w formie podstawowej ze słownika PoliMorf (przez spacy-lookups-data),
+#    obecne w słowniku do gier SJP.pl (lista „Scrabble”), posortowane wg łącznej częstości wszystkich
+#    form w napisach filmowych (FrequencyWords / OpenSubtitles 2018) – przejrzane ~12 000 najczęstszych;
+#  - z nich wybrane słowa konkretne, obrazowe i znane dzieciom 2–6 lat (bez wulgaryzmów, przemocy,
+#    smutnych i „dorosłych” tematów), plus zdrobnienia i słowa z mowy dziecięcej dopisane wg kategorii;
+#  - każde słowo sprawdzone w słowniku do gier SJP.pl (kilka form mnogich, np. „oczy”, „buty”, celowo).
+
+
+# 3 litery (90)
+ara bal bąk bób bór buk bus but byk ćma dąb dom dół dym elf gaj gęś gil gol gra hak jak jeż kij koc
+kok koń kos kot kra las ląd len lew lis lok lód łoś łuk łza maj mak mąż miś mop muł mur mus nić noc
+nos nóż oko osa ość pan pas paw pąk por puf pył rak róg rój rów ryś ryż sad sen ser sęp sok sos sól
+sum syn tor tur udo wąs wąż wir wół wóz ząb zoo żel żuk żur
+
+# 4 litery (264)
+alga arka auto bank baśń bieg blat blok boja bóbr brat brąz brew brud buda buty cedr chór cień cyrk
+dach dłoń dres dron drób drut drwa duch dwór dzik dżem echo fala figa film flet foka fort fosa frak
+garb gips glob glon głaz głos gnom gofr gong gość góra grad gród gruz gryf guma hala hełm herb huba
+hymn ibis igła ikra irys jajo jama jojo karp kasa kask kawa keks kieł kino kiść kiwi klej klif klon
+knot koja koło kora kort kosa kosz kość koza krab kran krem kret krew król kruk kula kuna kupa kura
+kurz lala lama lato lawa lina lipa list liść loch lody lupa luty łapa łata ława łąka łódź małż mama
+mapa maść mata mąka mech mecz meta metr mewa mgła miód misa młot młyn molo mops mors most mózg mróz
+mysz noga nogi nora nuta nuty oaza ocet oczy ogon okno okoń olej opal opos orka oset ospa owad owal
+owca owoc pani park pasy piec pieg pień pies piła pisk plac pled płoć płot pług pole port prąd pręt
+prom próg ptak ptyś puma pupa pysk pyzy rafa rama rana rdza rejs ręce ręka rosa róża rufa rura ryba
+rzep sala sień sito skok słoń słój słup smak smok sofa soja sowa ssak staw ster stok stóg stół szal
+szop szum ślad ślub świt taca tama targ tata tort tost tron tuba tuja tusz ucho udko upał usta uszy
+waga wata waza wiąz wieś wilk włos wnuk woda wosk zero zęby zima zlew złom znak zupa żaba żart żłób
+żona żółw żubr żwir
+
+# 5 liter (512)
+afisz aktor alarm album anioł arbuz arena aster atlas babka bagaż bagno bajka balet balon banan
+bańka bańki baran basen baton bawół bazar bekon belka berek beret beton bęben bigos bilet biwak
+bizon bluza błoto błysk bobas botki brama broda brzeg bucik budka budyń bułka burak burza buzia
+buźka całus cegła cekin chała chata chips chleb chlew cielę cisza córka cyfra czary czołg czoło
+danie deser deska dłuto dołek domek dorsz droga drops drozd drwal drzwi dymek dynia dywan dzban
+dzień dziób dzwon dźwig dżins ekran farba farby farma farsz ferie ferma filar flaga folia fotel
+futro galop gałąź gałka ganek garaż gąbka gąska głowa gofry gogle gołąb goryl góral górka grill
+groch grosz grota grypa grzyb gumka guzik gwizd hałas hamak harfa hiena hokej homar hotel imbir
+indyk iskra jacht jajko jeleń jenot jeżyk język jodła kabel kajak kakao kalka kamyk kanał kapeć
+kapka karta kasza katar kawka kącik kciuk kebab kefir kibic kijek kilof kiosk klacz klapa klasa
+klaun klops klosz klucz kłoda koala kobra kocię kocur kocyk kogut kojot kokon kokos kolec kolor
+kołek komar komin konar konik koral korba korek kotek kotka kowal kółko kózka kreda krowa krzak
+krzew kubek kubeł kucyk kufer kulka kupka kurek kurka kusza kuter kuzyn kwiat kwoka lalka lampa
+laser lasso lemur liana lilia linka lisek lizak ludek lwica łapka łatka ławka łazik łezka łobuz
+łosoś łódka łóżko łuska łydka łyżka łyżwy macka magia magik malec małpa mamba mamut mango marsz
+masaż maska masło maszt matka mebel medal melon metal metka metro miecz mięso mięta miska mlecz
+mleko morze motor motyl mucha mumia muzyk mycie mydło napar napój narty nauka niebo ninja nitka
+norka nosek nosze notes nożyk nóżka nurek nutka obcas obiad obłok obora obraz obrus ocean oczko
+ogień ogier ogród okręt oliwa omlet opona orzeł osioł owies pajac pająk palce palec palma palto
+pałac pałka panda papka parka pasek pasta patyk pazur pchła pegaz perła peron pępek pętla piach
+piana picie pięść pięta pikle pilot piłka pióro pirat pisak pizza plama plaża plecy plusk płyta
+pokój pompa posąg potok powóz pożar półka praca proca psiak psina pudel puder pudło puzon pyton
+radar radio ramię ramka ranek regał rekin rękaw robak robot rodeo rogal rolka rolki rondo rosół
+rowek rower rożek rożen rubin rurka rybak rybka rynek rynna rzeka rzepa rzęsa salon salto sanie
+sanki sarna sedes seler serce serek siano sierp skała skarb sklep skóra skwer słoik słoma smycz
+sokół sopel sosna sówka sport sroka stado stopa stróż struś stwór sufit supeł suseł suwak synek
+syrop szafa szept szewc szkło szlak sznur szopa szosa szron szyba szyja szyna śledź ślina śnieg
+śpiew środa śruba świat tacka tapir taras tarka tarta taśma tatuś teatr tenis tęcza tiara torba
+totem trawa trąba troll tubka tukan tułów tunel twarz uczeń uczta ulewa ulica upiór urwis uszko
+wacik wafel wagon walec waleń wanna warga wazon ważka wąsik wąwóz welon wełna wędka wiata wiatr
+widły wieża winda wkręt włosy wnęka worek wózek wrona wujek wydma wydra wymię wyspa zając zamek
+ząbek zboże zebra zegar zioło złoto zorza zupka żabka żądło żelki żeton żmija żuraw żurek żyłka
+
+# 6 liter (560)
+agrest alejka alpaka altana amulet ananas angina antena aparat apteka armata asfalt babcia bajoro
+balkon balsam bałwan bambus bandaż batuta bażant bączek beczka biegun bierka bilard biodro biurko
+blacha bluzka błazen błękit bocian boczek boisko bokser bombka borsuk bramka bratek brokuł bródka
+brzask brzdąc brzoza brzuch buciki bucior budzik bukiet buldog bulion burger buziak byczek cebula
+cement cesarz chaber chatka chmura chomik chrzan chusta chwast ciasto cielak ciocia ciotka cukier
+cyklon czapka czapla czepek czubek daszek delfin deszcz diadem dolina domino drążek drewno drzewo
+duszek dziura dźwięk dżinsy dżokej farmer fasola feniks festyn figiel figura fiołek flakon flądra
+foczka fretka frytki furtka gaduła gardło garnek gazela gazeta gąsior gejzer gepard gigant gitara
+globus główka goblin gokart górnik grabki granit grosik grudka grusza gryzoń gulasz gwóźdź hangar
+iguana insekt irokez jabłko jabłoń jagnię jagoda jaguar jarmuż jasiek jaśmin jedwab jesień jeżyna
+jogurt kabina kaczka kaczor kajman kajuta kaktus kalmar kałuża kamera kamień kanapa kangur kanion
+kapcie kaptur karmel karoca kartka karton kasjer kaszel kaszka kąpiel keczup kelner kiciuś kiecka
+kiełek kimono kisiel klamka klamra klapka klapki klatka klocek klocki klucha kluska kluski kładka
+kłębek kłódka kociak kocica kocioł kokpit kolano kolarz kolega kolęda kołacz kołdra kometa komiks
+komoda kompas kompot kondor kontur kopiec kopuła kopyto korona korzeń kosmos kostka koszyk kotlet
+kowboj kozaki kozioł kraina krater kratka krawat krążek kredka kredki kreska kręgle krokus kromka
+kropka kropla królik krówka książę księga kundel kurczę kurier kurnik kurtka kuskus kuźnia lakier
+lampka laptop lawina lekarz lekcja liczba lipiec lisica listek listwa liścik litera loczek ludzik
+lukier luneta lustro łabędź łasica ławica łodyga łokieć łopata magnes majtki malarz malina maluch
+małpka marker marmur maruda marzec meduza meteor miarka miasto mięsko migdał mikser mimoza miodek
+miotła misiek młotek młynek moneta monsun mordka morela moskit mostek motyka mrówka mundur murarz
+murawa muszka muszla muzeum muzyka myjnia myszka nabiał namiot narcyz narwal nektar niania niańka
+nizina nocnik nożyce obręcz obroża obuwie ogonek ogórek ojciec olejek oliwka ołówek opaska orzech
+otręby ozdoba paczka pagoda paleta papaja papier paproć papuga parada parter pawian pączek peruka
+pestka pęczek pędzel pianka piasek piątek piecyk pieprz piesek pieszy piętro piknik pilnik pionek
+piorun piórko piruet pisklę piżama placek placki plakat plecak plomba płatek płatki płetwa płotka
+płótno płytka pływak pociąg poczta podium pogoda pojazd pokarm pokoik polana polano polewa pomnik
+pomost pompka pompon ponczo ponton popiół poręcz poroże potwór pralka pranie precel preria prosię
+psikus psinka pstrąg puchar pulpet puszek puszka puzzle ranczo rączka rekord remiza reszka riksza
+roczek roleta rolnik równik rycerz rzeźba rzutka sałata sandał sąsiad schody sekret sernik sfinks
+siatka sierść silnik siłacz siniak siodło skórka skrzat skunks skuter słomka słońce słowik słupek
+smalec sobota sorbet spacer spanie spinka spodek srebro stacja stadko statek stojak stolik stołek
+stonóg stoper stożek stópka struna strych suknia sweter sylaba syrena szabla szachy szafir szafka
+szakal szalik szałas szarfa szczur szczyt szkoła szopka szorty szpula szycie szydło szynka ściana
+ślimak śliwka śmiech śpiwór śrubka świder świeca świerk święta święto świnia świnka tablet taczka
+tajfun talerz taniec tapeta tarcza teczka termit termos toster traper tratwa trąbka trener tundra
+tunika turban twaróg tyczka tygrys uchwyt werbel wesele węgiel węgorz wiadro wianek wiersz wiking
+wioska wiosło wiosna wiśnia witraż włosek wodnik wrotka wróbel wróżka wschód wtorek wulkan wyciąg
+wypiek wyścig wyżyna zabawa zachód zakręt zakupy zapach zatoka zbocze zbroja zeszyt ziarno ziemia
+zmywak zygzak źdźbło źrebak źrebię żagiel żelazo żłobek żołądź żonkil żółtko żuczek żyrafa żywica
+
+# 7 liter (502)
+adidasy agrafka aksamit aktorka alfabet altanka aniołek apaszka autobus autokar automat awokado
+babunia bajgiel balonik bałagan banknot baranek barszcz baryłka bateria batonik bawełna bazylia
+bębenek biegacz bieżnia bilecik blaszka bloczek bluszcz błotnik bobasek bohater borówka broszka
+bryczka brylant budynek butelka całusek cebulka centaur chałupa chlebek chłopak chmurka chodnik
+choinka chrupka chrupki chustka ciastko ciągnik cukinia cyferka cynamon cytryna czajnik czkawka
+czosnek diament dorożka drabina drożdże drzazga drzemka drzewko dworzec dywanik dzbanek dziadek
+dziąsło dzidzia dziecko dziupla dziurka dzwonek dżungla eliksir fabryka fartuch fasolka figurka
+firanka flaming foremka forteca fotelik fregata fryzjer fryzura futerał futerko futrzak gablota
+gałązka gaśnica gerbera głośnik gniazdo gobelin gołąbek gołąbki gondola goździk groszek gruszka
+grzanka grzybek grzywka gwiazda gwizdek halibut hamulec harcerz herbata hiacynt hotelik huragan
+hydrant istotka jałówka japonka jarmark jarzyna jelonek jemioła jezdnia jezioro kabelek kafelek
+kalosze kamerka kanapka kanarek kapitan kapusta karetka kasetka kasztan katedra kawałek kemping
+kieszeń kijanka klakson klarnet klawisz klejnot kleszcz klopsik kluczyk kobieta kogucik kokarda
+koktajl kolacja kolczyk kolejka koliber kolumna kołyska kombajn kominek komórka kompost koncert
+konewka konsola kontakt koparka koperek koperta kopytka koralik koronka kosmita kostium koszula
+kościół kotwica kowadło krakers krasnal krawiec kredens kręgiel krokiet królowa krupnik krzesło
+krzyżyk książka księżyc kubełek kucharz kuchnia kukułka kurczak kurtyna kuzynka kwadrat kwiatek
+lalkarz lampart lampion latarka lawenda lazania lekarka leniuch leopard licznik limonka linijka
+literka lodówka lokówka łakocie łańcuch łopatka łucznik maczuga majonez majster makaron makieta
+makrela malarka mamusia manekin mankiet maraton marchew masełko maszyna materac medalik megafon
+melodia mgiełka mielony mikołaj minerał mleczko młynarz mokasyn monitor motylek mozaika myśliwy
+nagroda nalepka nasiono nogawka obiadek obrazek ognisko ogródek okienko okładka okulary olbrzym
+osiedle osiołek ostryga pacynka padalec pagórek pancerz pantera papryka papużka parapet parasol
+parawan parking parówka pasażer pasterz pastuch paszcza pasztet pawilon pazurek pelikan perełka
+perfumy pianino pieczeń pieczęć piekarz pieniek piernik pierogi piłkarz pinezka pingwin piórnik
+pirania pisanka piwnica piżamka planeta plansza plaster plastik pluskwa pluszak płaszcz płomień
+pobocze pobudka podarek podkowa podłoga poducha pokrywa policja połówka pomidor popcorn poranek
+portfel portret posążek posypka pościel potrawa powieka prezent promień prosiak proszek pryszcz
+ptactwo ptaszek pudding pudełko pułapka pupilek puszcza pychota racuchy rajtuzy rakieta renifer
+ręcznik rodzice rodzina rogalik ropucha rosomak roślina rowerek równina różdżka rysunek salonik
+sałatka samolot sandały sasanka sawanna schodek schowek sekwoja sikorka siostra sklepik skoczek
+skorupa słownik smoczek smoking spaniel spirala spodnie stadion stajnia stempel sternik steward
+stodoła stolarz stolica stragan strażak strumyk strzała studnia stworek styczeń syrenka szalupa
+szałwia szampon szatnia szczęka szelest szkółka szlaban szmatka szminka sznurek szpadel szparag
+szpilka szpinak szpital sztućce szyszka ścianka ścierka ścieżka śledzik śliniak ślusarz śnieżka
+śpiochy światło świstak tablica tancerz tapczan tektura telefon tkanina toaleta torebka tornado
+traktor trampka trampki tramwaj trawnik trening trójkąt trójząb trybuna trzcina trzmiel trzonek
+tulipan tuńczyk turysta tydzień ubranie ubranko uliczka uśmiech wafelek wagonik wakacje walizka
+wanilia warkocz warzywo wehikuł weranda wędkarz wędlina wiadukt wiatrak wichura widelec wieczór
+wiedźma wieniec wiertło wierzba wieszak wigilia wilczek wnuczek wnuczka wodopój wrzątek wstążka
+wtyczka wyprawa wysepka wystawa wzgórze zabawka zagadka zagroda zapałka zarazek zasłona zderzak
+zdjęcie zegarek ziarnko znaczek zwierzę zwrotka żarłacz żarówka żeglarz żelazko
+
+# 8 liter (389)
+akordeon akrobata akwarium albatros aligator ambulans antylopa apteczka aptekarz artystka astronom
+atrament babeczka bagietka bajeczka bakłażan balerina bałwanek bankomat baranina biszkopt bliźniak
+bochenek bramkarz bratanek brzuszek bukiecik bułeczka bumerang bungalow bursztyn chłodnik chłopiec
+chochlik ciężarek córeczka cukierek cylinder cymbałki cysterna czerwiec człowiek czupryna czwartek
+czytanie dachówka dentysta detektyw dinozaur długopis doberman dokładka doniczka drabinka drogeria
+drukarka dyktafon dyktando dyrygent dzidziuś dzięcioł dzwonnik elektryk fontanna fotograf garnitur
+girlanda gniazdko gołębica gorączka gramofon grudzień grzebień grzejnik guziczek gwiazdka harcerka
+herbatka horyzont huśtawka inżynier iskierka jadalnia jajeczko jaskinia jaskółka jastrząb jaszczur
+jedzenie jedzonko jeziorko jęczmień kaczątko kaganiec kalafior kameleon kamyczek kapelusz kapturek
+karaluch karawana karczoch karmelek karnawał karuzela karzełek kaszalot kelnerka kiełbasa kiermasz
+kierowca klasówka kokardka kołnierz komputer konwalia kormoran korytarz kosiarka koszulka koteczek
+kowbojka koziołek kółeczko krawcowa krewetka krokodyl kropelka królewna kryształ krzaczek krzesiwo
+kubeczek kucharka kuchenka kukiełka kuleczka kwiecień labirynt labrador laleczka latarnia latawiec
+leniwiec leśniczy limuzyna listopad lizaczek lodowiec lodziarz lornetka lotnisko lunapark lusterko
+łaskotki łazienka łóżeczko łyżeczka magnolia maluszek marynarz maseczka maskotka maszynka maślanka
+mechanik medalion meteoryt miętówka mikrofon mikstura miseczka mleczarz mokradło motocykl mrowisko
+muffinka mundurek muszelka naczynie naklejka nakrętka naleśnik narciarz nasionko naszywka niemowlę
+notatnik nożyczki obrączka odkrywca ogórkowa ogrodnik okruszek okulista oranżada orchidea orzeszek
+owczarek owieczka owsianka pajączek paluszek paluszki pałeczka pamiątka panorama pantofel papierek
+parmezan parowiec pastylka patelnia patyczek pediatra peleryna perkusja peryskop pianista pieczara
+pieczywo pielucha pieprzyk pierożek piłeczka piosenka piramida pistacja pizzeria plankton pływanie
+poddasze podeszwa poduszka podwórko podwórze pojemnik pokrętło policzek południe pomocnik potworek
+poziomka półmisek precelek probówka prysznic przełęcz przycisk przygoda przyroda przysmak pszczoła
+pszenica ptaszyna pustynia radiowóz rajstopy ratownik rękawica robaczek robotnik rodzinka rodzynek
+rodzynka rodzynki roślinka rozmaryn różyczka rumianek sadzawka sadzonka sakiewka saksofon samochód
+sardynka saszetka satelita sąsiadka schabowy serwetka siekiera sierpień skakanka skarbiec skarpeta
+skorpion skorupka skrzydło skrzynia skrzynka skrzypce skrzypek skrzypki słodycze smakołyk smartfon
+sombrero spacerek spłuczka spodenki spódnica sprężyna spychacz stołówka strumień strzałka sukienka
+suszarka sweterek syneczek szaszłyk szczenię szczotka szczupak szczurek szczypce szczypta szerszeń
+sześcian szkielet szkiełko szklanka szlafrok szmaragd szprycha sztandar szufelka szuflada szwaczka
+szympans śmietana śmietnik śnieżyca świeczka świetlik tabletka taksówka talerzyk talizman tancerka
+teatrzyk teleskop tortilla tygrysek ubikacja umywalka upominek urodziny wachlarz warsztat warzywko
+wędrówka wiaderko wielbłąd wieloryb wierszyk wilczyca wisienka wisiorek witamina wodospad wołowina
+woreczek wróbelek wrzesień wujaszek wywrotka zagajnik zajączek zaklęcie zakładka zasłonka zastrzyk
+zatoczka zatrzask ziarenko ziemniak złodziej zmierzch zmywarka zraszacz zszywacz zwierzak żaglówka
+żołnierz żurawina żyrandol żywopłot
+
+# 9+ liter (481)
+alpinista architekt asteroida astronauta autostrada badminton baletnica balustrada betoniarka
+biblioteka bibliotekarz biedronka biżuteria bliźniaczek bliźniaczka błyskawica błyskotka błyszczyk
+bohaterka braciszek bransoletka breloczek brukselka brzoskwinia budowlaniec buteleczka buziaczek
+chłopaczek chłopczyk chorągiew chorągiewka chrabąszcz chryzantema chrząszcz chusteczka ciasteczko
+cielaczek ciężarówka cukiereczek cukiernia cukiernik cyrkowiec czapeczka czarodziej czarodziejka
+czarownica czarownik czekolada czekoladka czereśnia człowieczek dekoracja deskorolka dmuchawiec
+drogowskaz drożdżówka drzwiczki dziadkowie dziadziuś dzieciaczek dzieciątko dziedziniec dziewczyna
+dziewczynka dzwoneczek dżdżownica encyklopedia etykietka fajerwerk fartuszek filiżanka fistaszek
+fortepian frytkownica fryzjerka furgonetka galaktyka galaretka garderoba garnuszek gazeciarz
+gąsienica gimnastyczka gimnastyk gimnastyka gitarzysta gospodarstwo gotowanie grejpfrut grzechotka
+gwiazdeczka hamburger harmonijka helikopter herbatnik hieroglif hipopotam historyjka hortensja
+hulajnoga hydraulik ilustracja iluzjonista instruktor instrument jabłecznik jabłuszko jadłospis
+jajecznica jaszczurka jednorożec jeżozwierz kaczuszka kalendarz kalkulator kaloryfer kałamarnica
+kamizelka kanapeczka kapelusik kapliczka karmienie karteczka kartofelek kasztanowiec katapulta
+kawałeczek kawiarenka kawiarnia kąpielówki kiełbaska kierownica kierunkowskaz kieszonka klawiatura
+klepsydra klimatyzator kolacyjka koleżanka kolorowanka kołnierzyk kołowrotek kołysanka kombinezon
+kominiarka konduktor koniczyna koniuszek kontynent koralowiec korniszon kosmetyczka kosmonauta
+koszykarz koszykówka koziorożec krajobraz krasnolud krasnoludek kreskówka kręgielnia królestwo
+królewicz króliczek krótkofalówka kruszynka kryształek krzesełko krzyżówka książeczka księgarnia
+księżniczka kukurydza kurczaczek kwiaciarka kwiaciarnia kwiaciarz kwiatuszek lekarstwo lemoniada
+listonosz lodowisko lodziarnia lokomotywa ładowarka łamigłówka łańcuszek majteczki maleństwo
+malowanie malowidło małpeczka mandarynka marchewka margaryna marionetka marmolada marynarka
+matematyka medalista mężczyzna miasteczko mieszkanie mieszkanko mięsożerca mikrofalówka mikroskop
+miniatura misiaczek modliszka motorower motorówka mrówkojad musztarda naleśniki narciarstwo
+narzędzie naszyjnik nauczyciel nauczycielka niedziela niedźwiadek niedźwiedź niemowlak niespodzianka
+nietoperz niezapominajka nosorożec noworodek obwarzanek oceanarium ochraniacz odkurzacz odpoczynek
+odrzutowiec ogrodzenie okiennica olimpiada opiekunka opowiadanie opowiastka orangutan orkiestra
+ortodonta ośmiornica otwieracz paczuszka pajęczyna pamiętnik pancernik pantofelek papryczka
+parasolka pasikonik pastwisko pasztecik paznokieć październik pączuszek pianistka piaskownica
+pieczarka pieczątka pieczenie piekarnia piekarnik pielęgniarka pieluszka pieniądze pieniążek
+pierniczek pierścień pierścionek pierwszak pieseczek pietruszka piosenkarka piosenkarz piwniczka
+planetarium plastelina plasterek platforma płaszczka płaszczyk pocałunek pochodnia poczekalnia
+pocztówka poczwarka podarunek podbródek podkoszulka podróżnik podstawka podstawówka podszewka
+poduszkowiec podwieczorek pogodynka pogotowie pogrzebacz pokrowiec polędwica policjant policjantka
+pomarańcza pomidorowa pomocnica poniedziałek pończocha porcelana portmonetka porzeczka powietrze
+pozytywka półksiężyc prababcia pracownia pradziadek promyczek prosiaczek przebiśnieg przebranie
+przedpokój przedszkolak przedszkole przejażdżka przekąska przepiórka prześcieradło przewodnik
+przeziębienie przychodnia przyczepa przyjaciel przyjaciółka przyprawa przystanek przytulanka
+pszczółka pudełeczko ramiączko reflektor reklamówka restauracja rękawiczka rękawiczki rottweiler
+rowerzysta rozbójnik rozgwiazda rumieniec rymowanka rzeźbiarz rzodkiewka salamandra samochodzik
+samogłoska samolocik schronisko serduszko siatkówka siedzenie siostrzyczka skafander skamielina
+skarabeusz skarbonka skarpetka skarpetki skowronek skrzydełko skrzyżowanie słoneczko słonecznik
+słuchawka słuchawki snowboard solniczka spadochron spiżarnia sportowiec spożywczak spódniczka
+sprzączka sprzątaczka sprzątanie sprzedawca staruszka sterowiec stetoskop stewardesa stewardessa
+stokrotka straszydło studzienka stworzonko sukieneczka supermarket sylwester sypialnia szachista
+szachownica szarańcza szarlotka szczeniaczek szczeniak szczoteczka szermierka szkatułka szkicownik
+szklaneczka szklarnia sznurowadło sznurówka szybowiec szynszyla śmieciarka śmieciarz śmigłowiec
+śniadanie śnieżynka śrubokręt światełko świecidełko świecznik świerszcz świerszczyk świetlica
+tabliczka taksówkarz tamburyno tarantula telewizor temperówka tenisówka terenówka termometr
+trampolina truskawka tygrysica tyranozaur uczennica układanka walentynka warkoczyk warzywniak
+wentylator weterynarz wielkolud wieprzowina wiertarka wierzchowiec wiewiórka wieżowiec wieżyczka
+winogrono wiolonczela wspinaczka wychowawca wycieczka wycieraczka wykałaczka wykrzyknik wyłącznik
+wynalazca wyścigówka zabaweczka zajezdnia zamrażarka zapiekanka zaproszenie zegarmistrz zielenina
+ziemniaczek zjeżdżalnia znalezisko zwierzaczek zwierzątko żołnierzyk
+
+# dopisane jako formy podstawowe wyrazów użytych w zdaniach
+autko berło budowa grzywa kareta sieć
