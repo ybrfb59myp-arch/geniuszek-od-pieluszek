@@ -104,6 +104,7 @@
 <div class="panel">
   <label class="wybor">
     <select id="dlugosc" aria-label="Długość słowa">
+      <option value="2">2 litery</option>
       <option value="3">3 litery</option>
       <option value="4">4 litery</option>
       <option value="5">5 liter</option>
@@ -158,7 +159,7 @@ el.zestaw.checked = pamiec.get("zestaw", true);
 el.bez.checked = pamiec.get("bez", false);
 
 // Odfiltrowana pula słów dla bieżących ustawień.
-const DLUGOSCI = ["3", "4", "5", "6", "7", "8", "9+"];
+const DLUGOSCI = ["2", "3", "4", "5", "6", "7", "8", "9+"];
 
 // Odfiltrowana pula słów danej długości dla bieżących ustawień.
 function pula(dl) {

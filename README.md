@@ -1,7 +1,7 @@
 # Geniuszek od Pieluszek – losuj słowo
 
 Prosta aplikacja do kart edukacyjnych „Geniuszek od Pieluszek”.
-Wybierasz długość słowa (3, 4, 5, 6, 7, 8 albo 9+ liter, albo „Losowa długość”), naciskasz **Losuj słowo**, a słowo pojawia się
+Wybierasz długość słowa (2, 3, 4, 5, 6, 7, 8 albo 9+ liter, albo „Losowa długość”), naciskasz **Losuj słowo**, a słowo pojawia się
 ułożone z kart tak jak na stole: pierwsza karta w całości (np. „Dd”), z kolejnych widać małą literę.
 
 Dwuznaki i zmiękczenia układane są z jednej karty, tak jak w talii:

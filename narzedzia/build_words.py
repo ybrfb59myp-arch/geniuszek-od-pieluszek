@@ -1,6 +1,6 @@
 """Buduje slowa.js: listy prostych słów dla 2–5-latków, pogrupowane po liczbie liter.
 
-Źródło kandydatów: aztekium.pl (lista ogólna "Wyrazy" 3–8 liter i 9–11 liter + kategorie:
+Źródło kandydatów: aztekium.pl (lista ogólna "Wyrazy" 2–8 liter i 9–11 liter + kategorie:
 owoce, zwierzęta, zabawki, przedmioty), uzupełnione potocznymi słowami z mowy dziecięcej,
 których aztekium nie ma (np. lody, buty, lizak, nocnik, hulajnoga, piaskownica).
 Klucz 9 oznacza grupę "9+" (9–11 liter).
@@ -9,6 +9,9 @@ Wybór: konkretne, obrazowe rzeczowniki z codziennego świata dziecka.
 import json, sys
 
 SLOWA = {
+    # 2 litery: jedyny rzeczownik to "ul"; reszta to krótkie słowa z codziennej mowy dziecka
+    # (zaimki, przyimki, "ma", "je") i dziecięce wykrzyknienia (pa, ał, oj, aj, am, mu, be).
+    2: """ul ja ty on my wy to ta te tu ma je co no na do od po za ze bo mi mu be pa ał oj aj am""",
     3: """dom kot koń lis lew jeż miś nos oko osa ser sok sos ząb żuk wąż las lód koc nóż
           byk bąk but dym dąb gęś kij ryż sól zoo łoś paw rak wóz mak ćma mur pas róg noc łuk wąs""",
     4: """kura koza pies foka lama sowa mysz wilk żaba żółw owca słoń krab kret ryba ptak dzik
