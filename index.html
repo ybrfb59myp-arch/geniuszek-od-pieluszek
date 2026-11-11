@@ -2,7 +2,7 @@
 <html lang="pl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Geniuszek od Pieluszek</title>
 <meta name="theme-color" content="#5E2D65">
 <link rel="icon" type="image/png" sizes="32x32" href="ikony/favicon-32.png">
@@ -27,9 +27,11 @@
     color: var(--tekst);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     display: flex; flex-direction: column; min-height: 100dvh;
+    /* viewport-fit=cover: sami pilnujemy, żeby nic nie wchodziło pod wycięcie ekranu i pasek */
+    padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     -webkit-tap-highlight-color: transparent;
   }
-  header { display: flex; justify-content: center; padding: 18px 16px 4px; }
+  header { display: flex; justify-content: center; padding: max(18px, calc(env(safe-area-inset-top) + 8px)) 16px 4px; }
   header img { height: 46px; width: auto; }
 
   .panel {
@@ -58,12 +60,17 @@
   button:focus-visible, select:focus-visible { outline: 3px solid var(--bez); outline-offset: 3px; }
 
   main {
-    flex: 1; display: flex; align-items: center; justify-content: center;
+    flex: 1; display: flex; flex-direction: column; align-items: center;
     padding: 16px 12px 24px; min-height: 260px;
   }
-  #slowo { display: flex; align-items: center; }
+  /* Wyśrodkowanie przez auto-marginesy: gdy karty się nie mieszczą, wychodzą w dół, a nie na przyciski. */
+  main::after { content: ""; margin-top: auto; }
+  #slowo { display: flex; flex-direction: column; align-items: center; gap: var(--odstep-wierszy, 0); margin-top: auto; }
+  .linia { display: flex; align-items: center; gap: var(--odstep-slow, 0); }
+  .wyraz { display: flex; align-items: center; }
+  .linia .wyraz + .wyraz { filter: drop-shadow(2px 2px 4px rgba(60, 20, 70, .18)); }
   .karta {
-    display: block; width: var(--w); height: calc(var(--w) * 0.7104);
+    display: block; width: var(--w); height: calc(var(--w) * 0.7104); flex: none;
     border-radius: calc(var(--w) * 0.05);
     box-shadow: 3px 2px 10px rgba(60, 20, 70, .22);
     animation: wjazd .38s cubic-bezier(.2,.8,.3,1.2) both;
@@ -80,7 +87,21 @@
     .wybor::after { right: 15px; }
     button#losuj { padding: 0 18px; }
   }
-  main { flex-direction: column; }
+  /* Telefon w poziomie: logo i przyciski w jednym rzędzie, żeby karty zmieściły się bez przewijania. */
+  @media (orientation: landscape) and (max-height: 520px) {
+    .gora { display: flex; align-items: center; justify-content: center; gap: 20px;
+            padding: max(8px, env(safe-area-inset-top)) 16px 0; }
+    header { padding: 0; }
+    header img { height: 40px; }
+    .panel { padding: 0; flex-wrap: nowrap; gap: 10px; }
+    select, button { font-size: 17px; height: 46px; }
+    select { padding: 0 38px 0 14px; }
+    .wybor::after { right: 15px; }
+    button#losuj { padding: 0 20px; }
+    main { padding: 6px 12px 6px; min-height: auto; }
+    details { margin-bottom: 4px; }
+    summary { padding: 4px; }
+  }
   #obroc { margin: 18px 0 0; color: #9a879e; font-size: 15px; text-align: center; }
   .pusto { color: #8a6f8f; font-size: 18px; text-align: center; max-width: 30em; line-height: 1.5; }
 
@@ -99,23 +120,29 @@
 </style>
 </head>
 <body>
-<header><img src="logo.png" alt="Geniuszek od Pieluszek"></header>
+<div class="gora">
+  <header><img src="logo.png" alt="Geniuszek od Pieluszek"></header>
 
-<div class="panel">
-  <label class="wybor">
-    <select id="dlugosc" aria-label="Długość słowa">
-      <option value="2">2 litery</option>
-      <option value="3">3 litery</option>
-      <option value="4">4 litery</option>
-      <option value="5">5 liter</option>
-      <option value="6">6 liter</option>
-      <option value="7">7 liter</option>
-      <option value="8">8 liter</option>
-      <option value="9+">9+ liter</option>
-      <option value="los">Losowa długość</option>
-    </select>
-  </label>
-  <button id="losuj" type="button">Losuj słowo</button>
+  <div class="panel">
+    <label class="wybor">
+      <select id="dlugosc" aria-label="Długość słowa albo zdanie">
+        <optgroup label="Słowa">
+          <option value="3">3 litery</option>
+          <option value="4">4 litery</option>
+          <option value="5">5 liter</option>
+          <option value="6">6 liter</option>
+          <option value="7">7 liter</option>
+          <option value="8">8 liter</option>
+          <option value="9+">9+ liter</option>
+          <option value="los">Losowa długość</option>
+        </optgroup>
+        <optgroup label="Zdania">
+          <option value="zdanie">Zdanie (3 słowa)</option>
+        </optgroup>
+      </select>
+    </label>
+    <button id="losuj" type="button">Losuj słowo</button>
+  </div>
 </div>
 
 <main>
@@ -129,7 +156,7 @@
   <summary>Ustawienia</summary>
   <div class="opcje">
     <label><input type="checkbox" id="zestaw" checked>
-      <span>Tylko słowa, które da się ułożyć z jednego zestawu kart
+      <span>Tylko słowa i zdania, które da się ułożyć z jednego zestawu kart
       <small>Pomija np. „lala” czy „kubek”, bo w talii jest tylko jedna karta L i jedna K.</small></span></label>
     <label><input type="checkbox" id="bezDwuznakow">
       <span>Bez dwuznaków i zmiękczeń (sz, cz, ch, rz, dz, ni, si, ci, zi…)
@@ -139,12 +166,16 @@
 </details>
 
 <script src="slowa.js"></script>
+<script src="zdania.js"></script>
 <script>
 // Karty z talii: plik obrazka i jaka część karty (od lewej) chowa się pod poprzednią kartą,
 // tak żeby z każdej kolejnej karty była widoczna mała litera (albo cały dwuznak).
 const KARTY = {"a":{"f":"a.webp","h":0.5},"ą":{"f":"a-ogonek.webp","h":0.504},"b":{"f":"b.webp","h":0.475},"c":{"f":"c.webp","h":0.508},"ć":{"f":"c-kreska.webp","h":0.508},"d":{"f":"d.webp","h":0.492},"e":{"f":"e.webp","h":0.465},"ę":{"f":"e-ogonek.webp","h":0.465},"f":{"f":"f.webp","h":0.492},"g":{"f":"g.webp","h":0.504},"h":{"f":"h.webp","h":0.506},"i":{"f":"i.webp","h":0.479},"j":{"f":"j.webp","h":0.481},"k":{"f":"k.webp","h":0.5},"l":{"f":"l.webp","h":0.537},"ł":{"f":"l-kreska.webp","h":0.477},"m":{"f":"m.webp","h":0.477},"n":{"f":"n.webp","h":0.504},"ń":{"f":"n-kreska.webp","h":0.506},"o":{"f":"o.webp","h":0.5},"ó":{"f":"o-kreska.webp","h":0.504},"p":{"f":"p.webp","h":0.475},"r":{"f":"r.webp","h":0.533},"s":{"f":"s.webp","h":0.492},"ś":{"f":"s-kreska.webp","h":0.492},"t":{"f":"t.webp","h":0.515},"u":{"f":"u.webp","h":0.51},"w":{"f":"w.webp","h":0.577},"y":{"f":"y.webp","h":0.475},"z":{"f":"z.webp","h":0.494},"ź":{"f":"z-kreska.webp","h":0.494},"ż":{"f":"z-kropka.webp","h":0.494},"cz":{"f":"cz.webp","h":0.154},"ch":{"f":"ch.webp","h":0.131},"sz":{"f":"sz.webp","h":0.156},"rz":{"f":"rz.webp","h":0.204},"dż":{"f":"dz-kropka.webp","h":0.14},"dzi":{"f":"dzi.webp","h":0.065},"dź":{"f":"dz-kreska.webp","h":0.14},"ni":{"f":"ni.webp","h":0.208},"si":{"f":"si.webp","h":0.212},"ci":{"f":"ci.webp","h":0.208},"dz":{"f":"dz.webp","h":0.14},"zi":{"f":"zi.webp","h":0.21}};
 const PROPORCJA = 341 / 480;   // wysokość / szerokość karty
 const MAKS_SZER = 300;         // największa szerokość jednej karty w px
+const ODSTEP_SLOW = 0.3;       // przerwa między słowami w zdaniu (w szerokościach karty)
+const ODSTEP_WIERSZY = 0.16;   // przerwa między wierszami zdania (w szerokościach karty)
+const WIELOZNAKI = Object.keys(KARTY).filter(k => k.length > 1).sort((a, b) => b.length - a.length);
 
 const $ = id => document.getElementById(id);
 const el = { dl: $("dlugosc"), losuj: $("losuj"), slowo: $("slowo"), zestaw: $("zestaw"), bez: $("bezDwuznakow"), licznik: $("licznik") };
@@ -158,10 +189,25 @@ const pamiec = {
 el.zestaw.checked = pamiec.get("zestaw", true);
 el.bez.checked = pamiec.get("bez", false);
 
-// Odfiltrowana pula słów dla bieżących ustawień.
-const DLUGOSCI = ["2", "3", "4", "5", "6", "7", "8", "9+"];
+const DLUGOSCI = ["3", "4", "5", "6", "7", "8", "9+"];
+const trybZdan = () => el.dl.value === "zdanie";
 
-// Odfiltrowana pula słów danej długości dla bieżących ustawień.
+// Dzieli wyraz na karty: najpierw dzi, potem dwuznaki, potem pojedyncze litery (jak build_words.py).
+function naKarty(wyraz) {
+  const out = [];
+  for (let i = 0; i < wyraz.length;) {
+    const z = WIELOZNAKI.find(k => wyraz.startsWith(k, i)) || wyraz[i];
+    out.push(z); i += z.length;
+  }
+  return out;
+}
+
+function tasuj(t) {
+  for (let i = t.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [t[i], t[j]] = [t[j], t[i]]; }
+  return t;
+}
+
+// ----- słowa -----
 function pula(dl) {
   return (SLOWA[dl] || []).filter(x => (!el.zestaw.checked || x.z) && (!el.bez.checked || !x.d));
 }
@@ -169,12 +215,11 @@ function pula(dl) {
 // „Worki” – osobny dla każdej długości; losujemy bez powtórzeń, dopóki nie przejdziemy całej puli.
 const worki = {};
 let ostatnie = null, biezace = null;
-function zWorka(dl) {
-  const k = [dl, el.zestaw.checked, el.bez.checked].join("|");
+function zWorka(klucz, zrodlo) {
+  const k = [klucz, el.zestaw.checked, el.bez.checked].join("|");
   let w = worki[k];
   if (!w || !w.length) {
-    w = worki[k] = pula(dl).slice();
-    for (let i = w.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [w[i], w[j]] = [w[j], w[i]]; }
+    w = worki[k] = tasuj(zrodlo().slice());
     if (w.length > 1 && ostatnie && w[w.length - 1].s === ostatnie) w.unshift(w.pop());
   }
   return w.pop() || null;
@@ -189,66 +234,168 @@ function losujSlowo() {
     if (dostepne.length > 1 && biezace && dostepne[i] === dlugoscSlowa(biezace)) i = (i + 1 + Math.floor(Math.random() * (dostepne.length - 1))) % dostepne.length;
     dl = dostepne[i];
   }
-  const x = zWorka(dl);
-  if (x) ostatnie = x.s;
-  return x;
+  const x = zWorka(dl, () => pula(dl));
+  if (!x) return null;
+  ostatnie = x.s;
+  return { s: x.s, w: [x.k] };
 }
 function dlugoscSlowa(x) { return x.s.length >= 9 ? "9+" : String(x.s.length); }
 
-function szerokoscKarty(karty) {
-  const jednostki = 1 + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
-  const dostepna = el.slowo.parentElement.clientWidth - 24;
-  const wysMaks = Math.max(140, window.innerHeight * 0.5);
-  return Math.floor(Math.min(MAKS_SZER, dostepna / jednostki, wysMaks / PROPORCJA));
+// ----- zdania -----
+// ZDANIA = { podmiot: [[reszta zdania, z, d], ...] }. Najpierw losujemy podmiot (każdy tak samo często),
+// potem resztę zdania – inaczej większość zdań zaczynałaby się od „mama” czy „dziecko”.
+const pulaZdanCache = {};
+function pulaZdan() {
+  const k = [el.zestaw.checked, el.bez.checked].join("|");
+  if (!pulaZdanCache[k]) {
+    const p = {};
+    for (const [podmiot, lista] of Object.entries(window.ZDANIA || {})) {
+      const ok = lista.filter(x => (!el.zestaw.checked || x[1]) && (!el.bez.checked || !x[2])).map(x => x[0]);
+      if (ok.length) p[podmiot] = ok;
+    }
+    pulaZdanCache[k] = p;
+  }
+  return pulaZdanCache[k];
+}
+function losujZdanie() {
+  const p = pulaZdan();
+  const podmiot = zWorka("zdania", () => Object.keys(p).map(s => ({ s })));
+  if (!podmiot) return null;
+  ostatnie = podmiot.s;
+  const reszty = p[podmiot.s];
+  const s = podmiot.s + " " + reszty[Math.floor(Math.random() * reszty.length)];
+  return { s, w: s.split(" ").map(naKarty) };
+}
+
+const losuj = () => trybZdan() ? losujZdanie() : losujSlowo();
+
+// ----- układ i rysowanie -----
+// Ile szerokości karty zajmuje wyraz: pierwsza karta cała (albo tylko jej prawa część z małą literą,
+// jeśli to nie pierwszy wyraz zdania), z każdej kolejnej karty widać część (1 - h).
+function jednostkiWyrazu(karty, pierwszy) {
+  return (pierwszy ? 1 : 1 - KARTY[karty[0]].h) + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
+}
+
+// Wolne miejsce na karty: szerokość obszaru i wysokość ekranu pod przyciskami, bez „Ustawień” na dole.
+function wolneMiejsce() {
+  const main = el.slowo.parentElement;
+  const gora = main.getBoundingClientRect().top + window.scrollY;
+  const dol = document.querySelector("summary").offsetHeight + 34;
+  return { szer: main.clientWidth - 24, wys: Math.max(110, window.innerHeight - gora - dol) };
+}
+
+// Dzieli wyrazy na wiersze tak, żeby karty były jak największe.
+function uklad(wyrazy) {
+  const { szer, wys } = wolneMiejsce();
+  const n = wyrazy.length;
+  const podzialy = [[n]];
+  if (n === 2) podzialy.push([1, 1]);
+  if (n === 3) podzialy.push([2, 1], [1, 2], [1, 1, 1]);
+  if (n > 3) podzialy.push([Math.ceil(n / 2), Math.floor(n / 2)]);
+  let najlepszy = null;
+  for (const podzial of podzialy) {
+    const wiersze = []; let i = 0;
+    for (const ile of podzial) { wiersze.push(wyrazy.slice(i, i + ile).map((k, j) => ({ karty: k, pierwszy: i + j === 0 }))); i += ile; }
+    const maksJedn = Math.max(...wiersze.map(r => r.reduce((s, x) => s + jednostkiWyrazu(x.karty, x.pierwszy), 0) + ODSTEP_SLOW * (r.length - 1)));
+    const L = wiersze.length;
+    const w = Math.floor(Math.min(MAKS_SZER, szer / maksJedn, wys / (L * PROPORCJA + (L - 1) * ODSTEP_WIERSZY)));
+    if (!najlepszy || w > najlepszy.w + 4) najlepszy = { w, wiersze };   // przy remisie mniej wierszy
+  }
+  return najlepszy;
+}
+
+function nowaKarta(k) {
+  const img = document.createElement("img");
+  img.className = "karta";
+  img.src = "karty/" + KARTY[k].f;
+  img.alt = k;
+  img.draggable = false;
+  return img;
 }
 
 function pokaz(x, animuj = true) {
   biezace = x;
   el.slowo.innerHTML = "";
   if (!x) {
-    el.slowo.innerHTML = '<p class="pusto">Brak słów dla tych ustawień. Zmień długość albo ustawienia.</p>';
+    el.slowo.innerHTML = '<p class="pusto">Brak ' + (trybZdan() ? "zdań" : "słów") + ' dla tych ustawień. Zmień wybór albo ustawienia.</p>';
     el.slowo.removeAttribute("aria-label");
     $("obroc").hidden = true;
     return;
   }
-  const w = szerokoscKarty(x.k);
+  const { w, wiersze } = uklad(x.w);
   el.slowo.style.setProperty("--w", w + "px");
+  el.slowo.style.setProperty("--odstep-slow", (ODSTEP_SLOW * w) + "px");
+  el.slowo.style.setProperty("--odstep-wierszy", (ODSTEP_WIERSZY * w) + "px");
   $("obroc").hidden = !(w < 90 && window.innerHeight > window.innerWidth);
   el.slowo.setAttribute("aria-label", x.s);
-  x.k.forEach((k, i) => {
-    const img = document.createElement("img");
-    img.className = "karta";
-    img.src = "karty/" + KARTY[k].f;
-    img.alt = k;
-    img.draggable = false;
-    img.style.zIndex = String(x.k.length - i);          // pierwsza karta na wierzchu
-    if (i > 0) img.style.marginLeft = (-KARTY[k].h * w) + "px";
-    img.style.animationDelay = animuj ? (i * 90) + "ms" : "0ms";
-    if (!animuj) img.style.animation = "none";
-    el.slowo.appendChild(img);
-  });
+  let nr = 0;
+  const wszystkich = x.w.reduce((s, k) => s + k.length, 0);
+  for (const wiersz of wiersze) {
+    const linia = document.createElement("div");
+    linia.className = "linia";
+    for (const { karty, pierwszy } of wiersz) {
+      const wyraz = document.createElement("div");
+      wyraz.className = "wyraz";
+      if (!pierwszy) {
+        // Kolejny wyraz zdania: ucinamy z lewej część pierwszej karty z wielką literą.
+        const x = Math.round(KARTY[karty[0]].h * w), r = Math.round(w * 0.05);
+        wyraz.style.marginLeft = -x + "px";
+        wyraz.style.clipPath = wyraz.style.webkitClipPath = `inset(0 -40px 0 ${x}px round ${r}px 0 0 ${r}px)`;
+      }
+      karty.forEach((k, i) => {
+        const karta = nowaKarta(k);
+        karta.style.zIndex = String(wszystkich - nr);                    // wcześniejsza karta na wierzchu
+        if (i > 0) karta.style.marginLeft = (-KARTY[k].h * w) + "px";
+        karta.style.animationDelay = animuj ? (nr * 90) + "ms" : "0ms";
+        if (!animuj) karta.style.animation = "none";
+        wyraz.appendChild(karta);
+        nr++;
+      });
+      linia.appendChild(wyraz);
+    }
+    el.slowo.appendChild(linia);
+  }
 }
 
-function odswiezLicznik() {
-  const n = el.dl.value === "los" ? DLUGOSCI.reduce((a, d) => a + pula(d).length, 0) : pula(el.dl.value).length;
-  el.licznik.textContent = "W puli: " + n + (n === 1 ? " słowo" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? " słowa" : " słów");
+function odmiana(n, jeden, kilka, wiele) {
+  return n === 1 ? jeden : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? kilka : wiele;
+}
+function odswiez() {
+  let n;
+  if (trybZdan()) {
+    n = Object.values(pulaZdan()).reduce((a, l) => a + l.length, 0);
+    el.licznik.textContent = "W puli: " + n + " " + odmiana(n, "zdanie", "zdania", "zdań");
+  } else {
+    n = el.dl.value === "los" ? DLUGOSCI.reduce((a, d) => a + pula(d).length, 0) : pula(el.dl.value).length;
+    el.licznik.textContent = "W puli: " + n + " " + odmiana(n, "słowo", "słowa", "słów");
+  }
+  el.losuj.textContent = trybZdan() ? "Losuj zdanie" : "Losuj słowo";
 }
 
-el.losuj.addEventListener("click", () => pokaz(losujSlowo()));
-el.dl.addEventListener("change", () => { pamiec.set("dl", el.dl.value); odswiezLicznik(); pokaz(losujSlowo()); });
-el.zestaw.addEventListener("change", () => { pamiec.set("zestaw", el.zestaw.checked); odswiezLicznik(); });
-el.bez.addEventListener("change", () => { pamiec.set("bez", el.bez.checked); odswiezLicznik(); });
+el.losuj.addEventListener("click", () => pokaz(losuj()));
+el.dl.addEventListener("change", () => { pamiec.set("dl", el.dl.value); odswiez(); pokaz(losuj()); });
+el.zestaw.addEventListener("change", () => { pamiec.set("zestaw", el.zestaw.checked); odswiez(); });
+el.bez.addEventListener("change", () => { pamiec.set("bez", el.bez.checked); odswiez(); });
 document.addEventListener("keydown", e => {
   if ((e.key === " " || e.key === "Enter") && !["SELECT", "INPUT", "BUTTON", "SUMMARY"].includes(document.activeElement.tagName)) {
-    e.preventDefault(); pokaz(losujSlowo());
+    e.preventDefault(); pokaz(losuj());
   }
 });
+
+// Po zmianie rozmiaru/obróceniu: przelicz karty. iOS podaje nowe wymiary z opóźnieniem, a czasem zostawia
+// stronę przesuniętą – dlatego po obróceniu wracamy na górę i liczymy jeszcze raz chwilę później.
 let tResize;
-window.addEventListener("resize", () => { clearTimeout(tResize); tResize = setTimeout(() => biezace && pokaz(biezace, false), 120); });
+const przerysuj = () => biezace && pokaz(biezace, false);
+window.addEventListener("resize", () => { clearTimeout(tResize); tResize = setTimeout(przerysuj, 120); });
+function poObroceniu() {
+  [150, 500, 1000].forEach(t => setTimeout(() => { window.scrollTo(0, 0); przerysuj(); }, t));
+}
+window.addEventListener("orientationchange", poObroceniu);
+if (screen.orientation) screen.orientation.addEventListener("change", poObroceniu);
 
 // Wczytaj obrazki kart z wyprzedzeniem, żeby losowanie było natychmiastowe.
 Object.values(KARTY).forEach(k => { const i = new Image(); i.src = "karty/" + k.f; });
-odswiezLicznik();
+odswiez();
 </script>
 </body>
 </html>
