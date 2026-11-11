@@ -1,8 +1,9 @@
 """Buduje slowa.js: listy prostych słów dla 2–5-latków, pogrupowane po liczbie liter.
 
-Źródło kandydatów: aztekium.pl (lista ogólna "Wyrazy" 3/4/5/6 liter + kategorie:
-owoce, zwierzęta, zabawki, przedmioty), uzupełnione kilkoma potocznymi słowami
-z mowy dziecięcej, których aztekium nie ma (np. lody, buty, lizak, nocnik).
+Źródło kandydatów: aztekium.pl (lista ogólna "Wyrazy" 3–8 liter i 9–11 liter + kategorie:
+owoce, zwierzęta, zabawki, przedmioty), uzupełnione potocznymi słowami z mowy dziecięcej,
+których aztekium nie ma (np. lody, buty, lizak, nocnik, hulajnoga, piaskownica).
+Klucz 9 oznacza grupę "9+" (9–11 liter).
 Wybór: konkretne, obrazowe rzeczowniki z codziennego świata dziecka.
 """
 import json, sys
@@ -22,14 +23,41 @@ SLOWA = {
           narty zegar lampa radio klucz torba bluza pasek guzik drzwi łóżko szafa półka fotel
           wanna mydło miska łyżka słoik wózek łódka motor dźwig kocyk łyżwy niebo śnieg kwiat trawa
           wiatr rzeka morze plaża ogień błoto grzyb tęcza burza dzień ogród brama wujek pirat
-          pilot""",
+          pilot budyń rosół tatuś""",
     6: """kaczka myszka świnia żyrafa tygrys kangur delfin chomik królik bocian papuga wróbel
           mrówka ślimak borsuk piesek jabłko śliwka wiśnia malina cebula ogórek fasola orzech
           ciasto pączek kotlet jogurt keczup cukier sałata frytki jagoda brzuch kolano łokieć
           czapka szalik kurtka sweter bluzka majtki piżama kapcie kredka klocki pędzel ołówek
           plecak garnek talerz wiadro miotła pralka schody balkon budzik kołdra nocnik kanapa
           lustro pociąg statek kartka zeszyt koszyk drzewo słońce chmura deszcz piasek
-          kamień kałuża brzoza babcia ciocia lekarz rycerz wróżka""",
+          kamień kałuża brzoza babcia ciocia lekarz rycerz wróżka ananas bałwan""",
+    7: """telefon zegarek krzesło dziadek samolot zwierzę książka gwiazda jezioro herbata butelka
+          kuchnia autobus koszula zabawka pomidor kapusta okulary kurczak cytryna lodówka parasol
+          dzwonek makaron tramwaj gruszka kolejka rakieta marchew ręcznik kanapka pudełko żarówka
+          choinka strażak widelec obrazek kasztan tulipan walizka kucharz drabina rodzice czajnik
+          kominek szyszka wiatrak traktor linijka piernik pingwin latarka koparka smoczek gwizdek
+          ogródek baranek księżyc płaszcz rodzina siostra mamusia ptaszek awokado szpital spodnie
+          kalosze dziecko pierogi motylek konewka łopatka foremka rowerek karetka prezent kołyska
+          balonik bębenek pianino parówka rogalik królowa żelazko papryka cukinia czosnek fasolka
+          groszek borówka renifer kijanka kukułka piekarz szpinak sałatka fartuch""",
+    8: """chłopiec samochód komputer skrzydło ziemniak pszczoła piosenka kierowca szklanka lotnisko
+          sukienka policzek poduszka spódnica wielbłąd kiełbasa motocykl cukierek skrzypce grzebień
+          łazienka taksówka nożyczki prysznic wieloryb krokodyl jaskółka dzięcioł patelnia szczotka
+          gwiazdka kalafior długopis drukarka akwarium szczenię dinozaur skarpeta mikrofon koszulka
+          latawiec łyżeczka piramida podwórko ogrodnik szuflada naleśnik kuchenka świeczka umywalka
+          doniczka kameleon rękawica ratownik narciarz rodzynek pantofel poziomka szympans saksofon
+          kucharka lornetka pielucha kaczątko huśtawka wiaderko łóżeczko skakanka cymbałki muszelka
+          bałwanek zajączek flamingo leniwiec żaglówka""",
+    9: """przyjaciel dziewczynka niedźwiedź czekolada pomarańcza jaszczurka telewizor wiewiórka
+          winogrono kukurydza filiżanka przedszkole truskawka ciężarówka brzoskwinia rękawiczka
+          nietoperz słonecznik czarownica księżniczka hipopotam helikopter lokomotywa fortepian
+          weterynarz odkurzacz błyskawica pietruszka spadochron czereśnia pradziadek termometr
+          gąsienica listonosz musztarda ośmiornica nosorożec koniczyna rzodkiewka skowronek
+          kamizelka pajęczyna mandarynka galaretka marchewka biedronka wieżowiec dżdżownica
+          skarpetka piekarnik astronauta jajecznica jednorożec chłopczyk śniadanie hulajnoga
+          stokrotka piaskownica zjeżdżalnia plastelina kolorowanka szczoteczka grzechotka
+          układanka pieluszka parasolka ciasteczko porzeczka policjant czarodziej paznokieć
+          kalendarz""",
 }
 
 # Karty w talii (strona z literą). Liczba = ile takich kart jest w jednym zestawie.
@@ -60,7 +88,7 @@ def main():
         if len(set(lista)) != len(lista):
             bledy.append(f"duplikaty w {dl}: {[w for w in lista if lista.count(w) > 1]}")
         for w in lista:
-            if len(w) != dl:
+            if (len(w) != dl) if dl < 9 else not (9 <= len(w) <= 11):
                 bledy.append(f"{w}: {len(w)} liter, a jest na liście {dl}")
             for k in na_karty(w):
                 if k not in KARTY:
@@ -90,5 +118,5 @@ if __name__ == "__main__":
             f.write("// Listy słów dla aplikacji Geniuszek od Pieluszek (wygenerowane przez build_words.py)\n")
             f.write("// s = słowo, k = karty po kolei, z = da się ułożyć z jednego zestawu, d = ma dwuznak/zmiękczenie\n")
             f.write("window.SLOWA = ")
-            json.dump({str(k): v for k, v in dane.items()}, f, ensure_ascii=False, separators=(",", ":"))
+            json.dump({(str(k) if k < 9 else "9+"): v for k, v in dane.items()}, f, ensure_ascii=False, separators=(",", ":"))
             f.write(";\n")

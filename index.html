@@ -74,6 +74,14 @@
     to   { opacity: 1; transform: none; }
   }
   @media (prefers-reduced-motion: reduce) { .karta { animation: none; } }
+  @media (max-width: 440px) {
+    select, button { font-size: 17px; height: 50px; }
+    select { padding: 0 38px 0 14px; }
+    .wybor::after { right: 15px; }
+    button#losuj { padding: 0 18px; }
+  }
+  main { flex-direction: column; }
+  #obroc { margin: 18px 0 0; color: #9a879e; font-size: 15px; text-align: center; }
   .pusto { color: #8a6f8f; font-size: 18px; text-align: center; max-width: 30em; line-height: 1.5; }
 
   details {
@@ -100,6 +108,10 @@
       <option value="4">4 litery</option>
       <option value="5">5 liter</option>
       <option value="6">6 liter</option>
+      <option value="7">7 liter</option>
+      <option value="8">8 liter</option>
+      <option value="9+">9+ liter</option>
+      <option value="los">Losowa długość</option>
     </select>
   </label>
   <button id="losuj" type="button">Losuj słowo</button>
@@ -109,6 +121,7 @@
   <div id="slowo" role="img" aria-live="polite">
     <p class="pusto">Wybierz długość słowa i naciśnij <b>Losuj słowo</b>.</p>
   </div>
+  <p id="obroc" hidden>↻ Obróć telefon poziomo – karty będą większe.</p>
 </main>
 
 <details>
@@ -140,31 +153,46 @@ const pamiec = {
   get(k, d) { try { const v = localStorage.getItem("gop_" + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem("gop_" + k, JSON.stringify(v)); } catch {} }
 };
-el.dl.value = String(pamiec.get("dl", 3));
+{ const z = String(pamiec.get("dl", "3")); el.dl.value = [...el.dl.options].some(o => o.value === z) ? z : "3"; }
 el.zestaw.checked = pamiec.get("zestaw", true);
 el.bez.checked = pamiec.get("bez", false);
 
 // Odfiltrowana pula słów dla bieżących ustawień.
-function pula() {
-  return (SLOWA[el.dl.value] || []).filter(x => (!el.zestaw.checked || x.z) && (!el.bez.checked || !x.d));
+const DLUGOSCI = ["3", "4", "5", "6", "7", "8", "9+"];
+
+// Odfiltrowana pula słów danej długości dla bieżących ustawień.
+function pula(dl) {
+  return (SLOWA[dl] || []).filter(x => (!el.zestaw.checked || x.z) && (!el.bez.checked || !x.d));
 }
 
-// „Worek” – losujemy bez powtórzeń, dopóki nie przejdziemy całej puli.
-let worek = [], kluczWorka = "", ostatnie = null, biezace = null;
-function klucz() { return [el.dl.value, el.zestaw.checked, el.bez.checked].join("|"); }
-function losujSlowo() {
-  const p = pula();
-  if (!p.length) return null;
-  if (kluczWorka !== klucz() || !worek.length) {
-    worek = p.slice();
-    for (let i = worek.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [worek[i], worek[j]] = [worek[j], worek[i]]; }
-    if (worek.length > 1 && ostatnie && worek[worek.length - 1].s === ostatnie) worek.unshift(worek.pop());
-    kluczWorka = klucz();
+// „Worki” – osobny dla każdej długości; losujemy bez powtórzeń, dopóki nie przejdziemy całej puli.
+const worki = {};
+let ostatnie = null, biezace = null;
+function zWorka(dl) {
+  const k = [dl, el.zestaw.checked, el.bez.checked].join("|");
+  let w = worki[k];
+  if (!w || !w.length) {
+    w = worki[k] = pula(dl).slice();
+    for (let i = w.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [w[i], w[j]] = [w[j], w[i]]; }
+    if (w.length > 1 && ostatnie && w[w.length - 1].s === ostatnie) w.unshift(w.pop());
   }
-  const x = worek.pop();
-  ostatnie = x.s;
+  return w.pop() || null;
+}
+function losujSlowo() {
+  let dl = el.dl.value;
+  if (dl === "los") {
+    // Losowa długość: najpierw losujemy długość (każda równie prawdopodobna), potem słowo.
+    const dostepne = DLUGOSCI.filter(d => pula(d).length);
+    if (!dostepne.length) return null;
+    let i = Math.floor(Math.random() * dostepne.length);
+    if (dostepne.length > 1 && biezace && dostepne[i] === dlugoscSlowa(biezace)) i = (i + 1 + Math.floor(Math.random() * (dostepne.length - 1))) % dostepne.length;
+    dl = dostepne[i];
+  }
+  const x = zWorka(dl);
+  if (x) ostatnie = x.s;
   return x;
 }
+function dlugoscSlowa(x) { return x.s.length >= 9 ? "9+" : String(x.s.length); }
 
 function szerokoscKarty(karty) {
   const jednostki = 1 + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
@@ -179,10 +207,12 @@ function pokaz(x, animuj = true) {
   if (!x) {
     el.slowo.innerHTML = '<p class="pusto">Brak słów dla tych ustawień. Zmień długość albo ustawienia.</p>';
     el.slowo.removeAttribute("aria-label");
+    $("obroc").hidden = true;
     return;
   }
   const w = szerokoscKarty(x.k);
   el.slowo.style.setProperty("--w", w + "px");
+  $("obroc").hidden = !(w < 90 && window.innerHeight > window.innerWidth);
   el.slowo.setAttribute("aria-label", x.s);
   x.k.forEach((k, i) => {
     const img = document.createElement("img");
@@ -199,12 +229,12 @@ function pokaz(x, animuj = true) {
 }
 
 function odswiezLicznik() {
-  const n = pula().length;
+  const n = el.dl.value === "los" ? DLUGOSCI.reduce((a, d) => a + pula(d).length, 0) : pula(el.dl.value).length;
   el.licznik.textContent = "W puli: " + n + (n === 1 ? " słowo" : (n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)) ? " słowa" : " słów");
 }
 
 el.losuj.addEventListener("click", () => pokaz(losujSlowo()));
-el.dl.addEventListener("change", () => { pamiec.set("dl", +el.dl.value); odswiezLicznik(); pokaz(losujSlowo()); });
+el.dl.addEventListener("change", () => { pamiec.set("dl", el.dl.value); odswiezLicznik(); pokaz(losujSlowo()); });
 el.zestaw.addEventListener("change", () => { pamiec.set("zestaw", el.zestaw.checked); odswiezLicznik(); });
 el.bez.addEventListener("change", () => { pamiec.set("bez", el.bez.checked); odswiezLicznik(); });
 document.addEventListener("keydown", e => {
