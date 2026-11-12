@@ -1,0 +1,1426 @@
+# Przykłady zdań układanych przez aplikację (wygenerowane – nie edytować ręcznie).
+# Zdania sensowne są wyliczone w całości, tu jest losowa próbka każdego wzoru.
+
+==========================================================================================
+Zdania krótkie (2–3 wyrazy) – SENSOWNE: 62538 zdań (1 talia: 17218, 2 talie: 57859)
+==========================================================================================
+
+--- wzór SV: 2998 zdań (1 talia: 1597, 2 talie: 2942)
+kucharka gotuje
+gołąb je
+koala śpi
+stolik stoi
+śmigłowiec stoi
+łóżko stoi
+ryba je
+mama ziewa
+mama odpoczywa
+miotła leży
+rak chowa się
+orzech spada
+uczennica pisze
+psiak śpi
+przedszkolak skacze
+duch chowa się
+kocur miauczy
+korona leży
+statek kołysze się
+dąb stoi
+lew ryczy
+prosiak kwiczy
+robak pełznie
+wróbelek je
+autko stoi
+osiołek pije
+siostrzyczka ziewa
+maluch cieszy się
+maluch bawi się
+morela wisi
+
+--- wzór AS: 4277 zdań (1 talia: 1975, 2 talie: 4164)
+srebrna bombka
+dojrzały banan
+biały ryż
+mały bączek
+mały bóbr
+miły taksówkarz
+śpiąca dziewczynka
+młoda krawcowa
+stara kózka
+żółta taksówka
+młoda krowa
+mały zajączek
+mała trampolina
+głodne źrebię
+kochana sąsiadka
+śpiąca rybka
+głodna gęś
+mały maluch
+młody aligator
+stara grusza
+mały leniwiec
+zielony ogórek
+duży stolik
+miły wędkarz
+wesoły kot
+zdrowy żółw
+stara kurka
+świeży ziemniak
+mały talerzyk
+dojrzała malina
+
+--- wzór TO_S: 658 zdań (1 talia: 559, 2 talie: 658)
+to jogurt
+to bucik
+to jeżyk
+to rzodkiewka
+to mydło
+to strażak
+to arbuz
+to kucyk
+to łóżko
+to krowa
+to grzechotka
+to ognisko
+to groszek
+to wierzba
+to drzewo
+to świnia
+to mleko
+to policjantka
+to mak
+to dżem
+to dziecko
+to fryzjer
+to ciastko
+to kotlet
+to biedronka
+to papużka
+to pomidor
+to mandarynka
+to łoś
+to klaun
+
+--- wzór SM: 8227 zdań (1 talia: 2475, 2 talie: 7841)
+kapcie na półce
+chrząszcz pod kamieniem
+frytki w kuchni
+szczeniak w koszu
+farby na ławce
+papryka w lodówce
+cielaczek na pastwisku
+dziadek na targu
+rolnik na farmie
+kluczyk w zamku
+lalka pod fotelem
+dziecko w łazience
+grzybek w mchu
+płaszcz na półce
+dziadek na strychu
+ciasteczko w pudełku
+siostrzyczka w banku
+siostra na wakacjach
+siostrzyczka w wannie
+mysz w norce
+córeczka na kanapie
+muszla na piasku
+córeczka na plaży
+spódniczka na krześle
+maluch pod kocem
+kamień na ścieżce
+uczeń w bibliotece
+synek w domu
+sąsiadka w aptece
+kot na kanapie
+
+--- wzór SC: 6934 zdań (1 talia: 1251, 2 talie: 6240)
+dziewczynka widzi tęczę
+gołąb je okruszki
+brat je banana
+mama widzi rakietę
+chłopiec liże lody
+żaba je komara
+ciocia widzi rakietę
+mama czyta kartkę
+mama lubi samochody
+źrebak je siano
+dziecko je pyzy
+siostra karmi lalkę
+ciocia lubi jabłka
+piekarz piecze chleb
+siostra lubi marchewkę
+mama je bułkę
+chłopiec rysuje konia
+mama lubi zupę
+dziadek lubi śnieg
+kocur liże łapkę
+brat je jogurt
+ciocia zakłada buty
+kucharz robi obiad
+siostra niesie wiadro
+mysz niesie ser
+ciocia ogląda film
+tata je bigos
+babcia widzi balon
+córeczka lubi plażę
+brat widzi balon
+
+--- wzór S_JEST_A: 4277 zdań (1 talia: 1142, 2 talie: 3991)
+samochód jest czarny
+tyranozaur jest zielony
+malarz jest wesoły
+owsianka jest pyszna
+kucharka jest mądra
+kubek jest czerwony
+strażak jest odważny
+skuter jest nowy
+cielę jest duże
+widelec jest nowy
+baranek jest mały
+indyk jest śpiący
+niedźwiedź jest mały
+synek jest śpiący
+borówka jest fioletowa
+czapka jest biała
+księżniczka jest dobra
+kiełbasa jest świeża
+antylopa jest duża
+słoń jest stary
+ciężarówka jest duża
+karuzela jest nowa
+koza jest stara
+elf jest mały
+baletnica jest wesoła
+książka jest stara
+baranek jest biały
+muszelka jest mała
+wieloryb jest głodny
+skrzat jest miły
+
+--- wzór ASV: 22486 zdań (1 talia: 4152, 2 talie: 20171)
+zmęczona babcia śpiewa
+wysoki dziadek gotuje
+wesoły klaun śpiewa
+zdrowy przedszkolak pływa
+duży lisek śpi
+głodny krokodyl leży
+mały kogut śpi
+mała krówka ryczy
+dobra mama stoi
+mądry fryzjer pracuje
+pyszna pomarańcza dojrzewa
+głodny kocur miauczy
+kochany uczeń pisze
+pyszna porzeczka pachnie
+cicha myszka biega
+śpiąca siostrzyczka śpiewa
+wesoły sprzedawca sprzedaje
+młody lampart skacze
+zmęczona balerina tańczy
+kochana pani leży
+wysoka sąsiadka ziewa
+młody pies warczy
+czerwony lizak leży
+miły rolnik jedzie
+różowy szlafrok wisi
+mądra dziewczynka je
+śpiący ślimak je
+białe auto jedzie
+młody niedźwiadek biega
+miły alpinista stoi
+
+--- wzór TO_JEST_S: 625 zdań (1 talia: 330, 2 talie: 621)
+to jest jaszczurka
+to jest jabłuszko
+to jest bramkarz
+to jest lampa
+to jest temperówka
+to jest szampon
+to jest misiaczek
+to jest muzyk
+to jest grusza
+to jest żyrafa
+to jest szczoteczka
+to jest kartka
+to jest paw
+to jest róża
+to jest pająk
+to jest mydło
+to jest stolik
+to jest tukan
+to jest łyżeczka
+to jest skarpetka
+to jest keczup
+to jest malarz
+to jest dźwig
+to jest kasza
+to jest wędkarz
+to jest czekolada
+to jest jabłoń
+to jest lekarz
+to jest listek
+to jest nauczycielka
+
+--- wzór TU_JEST_S: 625 zdań (1 talia: 282, 2 talie: 618)
+tu jest płaszcz
+tu jest wróbel
+tu jest szczoteczka
+tu jest malina
+tu jest rakieta
+tu jest motyl
+tu jest cielak
+tu jest pizza
+tu jest ogrodnik
+tu jest robak
+tu jest widelec
+tu jest uczennica
+tu jest źrebak
+tu jest borsuk
+tu jest ciastko
+tu jest dzik
+tu jest herbata
+tu jest chrząszcz
+tu jest kolarz
+tu jest jogurt
+tu jest narciarz
+tu jest moneta
+tu jest koteczek
+tu jest lampart
+tu jest piesek
+tu jest leniwiec
+tu jest kasztan
+tu jest hulajnoga
+tu jest pies
+tu jest osioł
+
+--- wzór TO_AS: 4277 zdań (1 talia: 1623, 2 talie: 4131)
+to stara sroka
+to biały samochód
+to zdrowy pan
+to zmęczony wujek
+to malutki robak
+to chrupiąca bułeczka
+to stary jastrząb
+to świeży arbuz
+to duży chomik
+to ciepły rogal
+to puszyste kaczątko
+to czysty kubek
+to dobry pilot
+to duża uczennica
+to śpiący okoń
+to stary źrebak
+to ciężka korona
+to zdrowy pstrąg
+to młody kurczaczek
+to wielki walec
+to niebieska miska
+to głodna rybka
+to miła balerina
+to pyszna morela
+to mała gwiazda
+to zdrowy maluszek
+to nowa parasolka
+to czerwona czereśnia
+to nowa piaskownica
+to zmęczony harcerz
+
+--- wzór S_I_S: 7154 zdań (1 talia: 1832, 2 talie: 6482)
+wieloryb i pstrąg
+motocykl i betoniarka
+foka i krab
+bigos i zupa
+sernik i tort
+jaszczurka i zebra
+lwica i kangur
+łyżeczka i garnek
+tulipan i stokrotka
+krokodyl i rak
+gepard i antylopa
+jastrząb i wróbel
+synek i tata
+parówka i szynka
+gulasz i rosół
+słoń i małpka
+dzbanek i patelnia
+lampart i wielbłąd
+jaskółka i dzięcioł
+mucha i pająk
+traktor i samochód
+świetlik i gąsienica
+tygrysica i lwica
+ciasto i bułeczka
+dzik i niedźwiadek
+małpeczka i lwica
+żyrafa i antylopa
+robaczek i pasikonik
+konik i owieczka
+leniwiec i wielbłąd
+
+==========================================================================================
+Zdania krótkie (2–3 wyrazy) – ŚMIESZNE (przykłady; w aplikacji mniej więcej co czwarte zdanie)
+==========================================================================================
+
+--- wzór zM
+kucharz w skarbonce
+długopis na lianie
+szympans na huśtawce
+chłopiec w kołysce
+borsuk w pociągu
+piesek na dachu
+kapelusz u weterynarza
+cielak na księżycu
+balerina w łóżeczku
+jastrząb na koncercie
+źrebak na komodzie
+krasnoludek pod wycieraczką
+maluszek u weterynarza
+szwaczka w kałuży
+marmolada w sklepie
+łoś na balu
+magik w pociągu
+klaun w gnieździe
+taksówkarz pod prysznicem
+krasnal w kołysce
+pstrąg na komodzie
+skuter w koronie
+sarna u weterynarza
+ciocia w plecaku
+wrona w szufladzie
+sprzedawca w koszyku
+małpa na pustyni
+królowa w przedszkolu
+mucha na zjeżdżalni
+troll w pociągu
+
+--- wzór zC
+zebra grabi liście
+krawcowa ma norę
+królewicz plecie sieć
+pasikonik ratuje kota
+ośmiornica je liść
+osioł niesie orzech
+policjantka ma gniazdo
+jaguar ma okulary
+kowboj robi miód
+łabędź odbija piłkę
+gołąb pije kawę
+motyl czyta bajkę
+pierwszak łapie kurę
+rybka nosi kapelusz
+kaczor lubi ser
+narciarz ma garnek
+strażak je kapustę
+czarodziejka ma garnek
+gepard czyta zagadkę
+kucharka ma plamy
+książę dziobie ziarno
+byk widzi księżyc
+ogrodnik ma baterię
+kocur niesie list
+sówka je orzech
+kolarz robi miód
+źrebak je mandarynkę
+piłkarz ma kurczęta
+aktor niesie orzech
+gęś ciągnie bryczkę
+
+--- wzór zAV
+pachnący misiek leży
+zielony barszcz pachnie
+puszysta sąsiadka gotuje
+kolorowy lemur śpi
+słodka osa siedzi
+niebieski kot siedzi
+okrągły świerszcz skacze
+różowa mucha bzyczy
+malutka sowa huka
+słodki cielaczek pije
+niebieska sąsiadka śpi
+pomarańczowy kosmita ląduje
+słodka wywrotka trąbi
+srebrny wędkarz odpoczywa
+wielki kombajn pracuje
+pachnąca mysz piszczy
+malutka papużka skrzeczy
+srebrny orzeł siedzi
+złoty dzięcioł siedzi
+malutki bramkarz broni
+malutka krawcowa szyje
+różowa aktorka tańczy
+pachnący koziołek stoi
+złoty kameleon śpi
+malutki balonik pęka
+pomarańczowy kompot stygnie
+zielony lis je
+szybki miś siedzi
+fioletowy koala siedzi
+różowy karp pływa
+
+--- wzór zV
+paw gra
+potwór klekocze
+przedszkolak huka
+węgorz ślizga się
+dziecko chrumka
+sarna czesze się
+lis piszczy
+sprzedawca pieje
+magik beczy
+lalka gra
+kociak warczy
+karp tyka
+żaba galopuje
+hydraulik rży
+kierowca kracze
+panda kuka
+smok czaruje
+krówka kwitnie
+kaczątko pieje
+niemowlę rży
+wiewiórka gra
+ryba czaruje
+pani klekocze
+koń liczy
+owieczka śpiewa
+siostrzyczka rży
+ogrodnik tyka
+elektryk piszczy
+czarownica szczeka
+pajączek rysuje
+
+--- wzór zA
+pomarańczowy bałwanek
+pomarańczowa kurka
+fioletowy goblin
+kolorowa moneta
+niebieska owca
+różowy jeż
+zielony elf
+szybki kruk
+różowa koza
+różowy pluszak
+słodka mrówka
+srebrna dżdżownica
+miękka owieczka
+srebrna nauczycielka
+złota foka
+fioletowa świnia
+słodkie ognisko
+puszysty szampon
+słodki klej
+fioletowa kałamarnica
+pomarańczowy słoń
+pomarańczowy czarodziej
+miękka kałamarnica
+srebrny zając
+wielka łódź
+wielki konik
+miękki zając
+złoty robot
+srebrny niedźwiadek
+malutki chomik
+
+--- wzór zToA
+to zielona kurka
+to malutka siostra
+to szybka gwiazda
+to fioletowy piekarz
+to szybka krowa
+to kolorowy sąsiad
+to szybki psiak
+to okrągły wróbelek
+to okrągła świnia
+to szybki krzew
+to okrągły lisek
+to pomarańczowy dinozaur
+to malutki wąż
+to pachnąca ptaszyna
+to srebrny koala
+to zielony gołąb
+to pomarańczowy wielbłąd
+to pomarańczowy pluszak
+to słodka sówka
+to zielona policjantka
+to różowy szybowiec
+to zielony robaczek
+to puszysty rolnik
+to fioletowy koala
+to pomarańczowy lew
+to puszyste ciasteczko
+to szybka musztarda
+to srebrny wielbłąd
+to miękka lokomotywa
+to pomarańczowy buk
+
+--- wzór zJA
+osiołek jest pomarańczowy
+pająk jest wielki
+trzmiel jest pachnący
+babcia jest zielona
+wróżka jest zielona
+orangutan jest puszysty
+struś jest różowy
+niedźwiedź jest puszysty
+tancerka jest pomarańczowa
+policjant jest pomarańczowy
+łyżka jest różowa
+straszydło jest malutkie
+rolnik jest kolorowy
+koala jest kolorowy
+chrząszcz jest zielony
+szczotka jest malutka
+księżyc jest malutki
+maluch jest wielki
+muszelka jest różowa
+wiewiórka jest okrągła
+gąsior jest wielki
+żabka jest miękka
+tygrysica jest miękka
+sukienka jest okrągła
+harcerka jest złota
+kociak jest szybki
+bobas jest wielki
+pszczoła jest srebrna
+książeczka jest zielona
+sernik jest wielki
+
+==========================================================================================
+Zdania długie (4–5 wyrazów) – SENSOWNE: 966753 zdań (1 talia: 22745, 2 talie: 653960)
+==========================================================================================
+
+--- wzór SVM: 33822 zdań (1 talia: 2939, 2 talie: 29315)
+braciszek ziewa u babci
+dziewczynka maluje pod parasolem
+przedszkolak biega pod drzewem
+koteczek miauczy na dywanie
+synek siedzi przy oknie
+dziadek ziewa na kanapie
+bobas śpi w wózku
+krasnoludek chowa się pod liściem
+świerszcz skacze na łące
+córeczka czeka u cioci
+siostrzyczka pije na łące
+siostra stoi na dworcu
+traktor warczy na farmie
+mama stoi przy oknie
+tata śpi w autobusie
+tygrysek śpi w trawie
+dziewczynka śmieje się na łóżku
+synek siedzi w łóżku
+siostrzyczka ziewa na drzewie
+dziadek siedzi na kanapie
+papużka gada w zoo
+mama pracuje na wsi
+laleczka leży na stole
+dziecko płacze na podwórku
+wujek ubiera się w domu
+pani je pod drzewem
+kaczątko kwacze w kałuży
+braciszek myje się w pokoju
+wiatr wieje na polu
+braciszek siedzi pod stołem
+
+--- wzór ASM: 75129 zdań (1 talia: 4106, 2 talie: 60914)
+małe jajko w misce
+silna pani na kanapie
+głodny koteczek na krześle
+śpiący jaguar w dżungli
+zielona papuga na głowie
+mądry sąsiad w jeziorze
+głodna mama na ławce
+głodny psiak na smyczy
+odważny synek w restauracji
+głodny ślimak w ogrodzie
+miły maluch na urodzinach
+słodka marchewka w sklepie
+duży niedźwiedź w zoo
+kochany szczeniak na plaży
+śpiąca ciocia na spacerze
+nowy garnek w kuchni
+śpiący przedszkolak w łazience
+wielki kamień w kieszeni
+stara laleczka na dywanie
+smutna pani nad rzeką
+niebieska spódnica w sklepie
+zmęczony dziadek na polanie
+leniwy kot na dachu
+wysoki wujek w sadzie
+czerwony keczup na stole
+wesołe niemowlę w łóżeczku
+kochany brat pod drzewem
+stary szalik na łóżku
+zdrowy szympans w dżungli
+głodny prosiak na podwórku
+
+--- wzór ASC: 88997 zdań (1 talia: 2584, 2 talie: 67605)
+ciekawa siostra rysuje mapę
+miłe dziecko rysuje tęczę
+mądry tata sprząta dom
+miły dziadek lubi sernik
+odważna siostra ma prezent
+mała siostra lubi śnieg
+miła ciocia lubi jabłka
+mała dziewczynka rysuje żyrafę
+wesoła babcia sadzi róże
+śpiący tata lubi jesień
+odważna siostra ogląda bajkę
+wesoła córeczka widzi rybę
+ciekawa dziewczynka niesie tort
+odważny brat ma papugę
+zdrowa dziewczynka je galaretkę
+zdrowy synek lubi bajki
+smutne dziecko zakłada rękawiczki
+grzeczny chłopiec ogląda film
+zmęczona ciocia myje twarz
+zdrowy dziadek odkurza pokój
+zdrowe dziecko ma puzzle
+wesoły synek przytula babcię
+duża siostra je winogrona
+ciekawa siostra czyta kartkę
+mały brat rysuje dom
+miły dziadek wiesza pranie
+miły malarz maluje kwiaty
+dobry tata gotuje pierogi
+ciekawa dziewczynka rysuje robota
+zdrowy synek je gołąbki
+
+--- wzór S_JEST_M: 7937 zdań (1 talia: 932, 2 talie: 7182)
+dziewczynka jest przy biurku
+sukienka jest na krześle
+kot jest na schodach
+kotka jest za piecem
+pasikonik jest na liściu
+pszczoła jest na łące
+tata jest na rowerze
+olbrzym jest w bajce
+chłopiec jest na łyżwach
+wujek jest w tramwaju
+misiaczek jest na huśtawce
+szczeniak jest za płotem
+wujek jest u fryzjera
+gołąbek jest na placu
+kurczaczek jest w trawie
+parasol jest w deszczu
+śmigłowiec jest nad morzem
+ptak jest na dachu
+mydło jest w szafce
+córeczka jest na górce
+ciocia jest na trawniku
+hydraulik jest w piwnicy
+bigos jest na talerzu
+goryl jest w dżungli
+łódka jest na rzece
+gumka jest w klasie
+linijka jest w szufladzie
+siostra jest w kawiarni
+siostrzyczka jest przed domem
+psiak jest za płotem
+
+--- wzór M_JEST_S: 7266 zdań (1 talia: 885, 2 talie: 6590)
+w kinie jest babcia
+na balkonie jest kwiat
+w kałuży jest świnia
+na krzaku jest jagoda
+w skrzyni jest skarb
+pod prysznicem jest siostrzyczka
+przed domem jest chłopiec
+w rzece jest dziewczynka
+w skrzynce jest list
+na polanie jest lisek
+w aucie jest mama
+pod prysznicem jest córeczka
+w sklepie jest sprzedawca
+na tęczy jest wróżka
+na straganie jest rzodkiewka
+na poczcie jest ciocia
+na torach jest lokomotywa
+w kieszeni jest czekolada
+przy oknie jest pan
+w wazonie jest stokrotka
+na bułce jest miód
+na wieży jest książę
+w dżungli jest pantera
+przy biurku jest uczennica
+w norze jest lis
+w plecaku jest czapeczka
+w misce jest kiwi
+na jeziorze jest okręt
+w garażu jest rowerek
+w wodzie jest tata
+
+--- wzór TO_JEST_AS: 4277 zdań (1 talia: 787, 2 talie: 3957)
+to jest zdrowy kruk
+to jest kolorowy plecak
+to jest smaczny jogurt
+to jest kolorowa piżama
+to jest zimny sopel
+to jest odważny brat
+to jest nowy zegar
+to jest dobra baletnica
+to jest zmęczony sąsiad
+to jest duży piesek
+to jest młody baranek
+to jest ładna czapka
+to jest mały balon
+to jest brązowy pluszak
+to jest ładna bluzka
+to jest głodne niemowlę
+to jest duży jaguar
+to jest mały osioł
+to jest puszysty piesek
+to jest zielona miseczka
+to jest mądra księżniczka
+to jest jasny księżyc
+to jest miły elf
+to jest różowa czapeczka
+to jest śpiący gąsior
+to jest czerwony ciągnik
+to jest świeży czosnek
+to jest kolorowa koszula
+to jest smutna pani
+to jest smutny przedszkolak
+
+--- wzór TU_JEST_AS: 4277 zdań (1 talia: 629, 2 talie: 3892)
+tu jest świeże winogrono
+tu jest biały miś
+tu jest duży flaming
+tu jest śpiący jeż
+tu jest fioletowy fiołek
+tu jest mały kocur
+tu jest mały samochodzik
+tu jest ładna lampka
+tu jest mały maluszek
+tu jest szybka mysz
+tu jest zielona lipa
+tu jest smaczny sok
+tu jest zdrowa żyrafa
+tu jest młoda gąska
+tu jest smutny przedszkolak
+tu jest szara chmurka
+tu jest chrupiący chleb
+tu jest śpiący osiołek
+tu jest silny elektryk
+tu jest młody koziołek
+tu jest śpiący szczeniak
+tu jest różowy flaming
+tu jest biała gęś
+tu jest wielki okręt
+tu jest smutny chłopiec
+tu jest dobry weterynarz
+tu jest głodny słoń
+tu jest szary słoń
+tu jest zmęczony pierwszak
+tu jest głodny dzidziuś
+
+--- wzór TO_S_I_S: 7154 zdań (1 talia: 1400, 2 talie: 6424)
+to prosiak i indyk
+to pszczółka i trzmiel
+to świetlik i osa
+to placki i kotlet
+to czapka i koszula
+to słoń i lemur
+to niedźwiadek i zajączek
+to jeż i lis
+to chomik i rybka
+to koziołek i osioł
+to kapusta i kukurydza
+to pstrąg i aligator
+to osiołek i gąska
+to spychacz i ciężarówka
+to betoniarka i dźwig
+to wilczek i niedźwiedź
+to mak i tulipan
+to porzeczka i śliwka
+to prosiaczek i koza
+to lis i ślimak
+to borówka i melon
+to lisek i jeżyk
+to pantera i goryl
+to mama i dziadek
+to bratek i fiołek
+to małpeczka i słoń
+to makaron i gulasz
+to róża i mak
+to truskawka i brzoskwinia
+to lampart i antylopa
+
+--- wzór ASV: 4121 zdań (1 talia: 506, 2 talie: 3827)
+mądra siostrzyczka huśta się
+mały braciszek ubiera się
+kochane dziecko kąpie się
+wysoka ciocia cieszy się
+duża uczennica huśta się
+wesoły pierwszak huśta się
+miły tata czesze się
+puszysty kocur chowa się
+grzeczny brat chowa się
+zdrowa siostrzyczka bawi się
+duża uczennica śmieje się
+zmęczony pierwszak ślizga się
+kochane dziecko cieszy się
+głodny wujek ubiera się
+duży uczeń chowa się
+duża siostrzyczka ubiera się
+szybki pies bawi się
+wesoły kot myje się
+grzeczny pierwszak bawi się
+śpiąca kotka myje się
+mądry pierwszak kąpie się
+duża owieczka pasie się
+puszysty koteczek myje się
+duży uczeń cieszy się
+kochane dziecko czesze się
+zmęczony przedszkolak huśta się
+piękna królewna śmieje się
+groźne straszydło chowa się
+smutny maluch chowa się
+głodna siostrzyczka cieszy się
+
+--- wzór ASVM: 310166 zdań (1 talia: 3079, 2 talie: 207755)
+głodny ptaszek śpiewa na balkonie
+wesoła kotka śpi na podłodze
+ciekawa córeczka leży na kanapie
+zdrowy kocur czeka w pokoju
+dobra babcia czyta na balkonie
+duży zając śpi na łące
+zdrowa córeczka płacze na huśtawce
+zmęczona sąsiadka stoi w kuchni
+mądra pani pracuje na statku
+śpiąca pani czyta na tarasie
+stary wilk warczy na polanie
+głodna siostra ziewa na trawie
+silna córeczka jedzie w pociągu
+wielki goblin mieszka w górach
+smutna siostra płacze na podwórku
+głodny braciszek leży na balkonie
+młoda małpa krzyczy w klatce
+mała kotka mruczy pod stolikiem
+kochane dziecko pisze w ogrodzie
+cicha myszka mieszka na strychu
+głodna pani siedzi u dentysty
+miła babcia siedzi w parku
+kochana pani ziewa przy ognisku
+wysoki sąsiad biega na plaży
+głodny braciszek śpiewa na urodzinach
+kochany synek siedzi w tramwaju
+nowa laleczka siedzi w domku
+wesoła królewna czeka w wieży
+zdrowa siostra biega na trawie
+głodny braciszek ziewa na placu
+
+--- wzór SCM: 15393 zdań (1 talia: 243, 2 talie: 10894)
+dziecko pije koktajl w kawiarni
+tata je rybę przy stole
+brat rysuje kreskę na dywanie
+dziewczynka je tort w restauracji
+dziecko rysuje ptaka w pokoju
+siostra czyta list w ogrodzie
+dziewczynka je gulasz w restauracji
+córeczka je ogórek w kuchni
+córeczka rysuje robota na podłodze
+brat rysuje trójkąt przy biurku
+tata je arbuza przy stole
+brat je budyń na tarasie
+dziewczynka czyta książeczkę w bibliotece
+dziadek czyta kartkę na ławce
+babcia je gruszkę na balkonie
+dziecko je chleb w restauracji
+dziecko je winogrona na balkonie
+synek rysuje góry w szkole
+córeczka rysuje robota w przedszkolu
+siostra je zupę u babci
+dziecko rysuje rycerza w szkole
+dziadek pije lemoniadę w ogrodzie
+dziecko je pomidor na tarasie
+siostra rysuje kwiatek w pokoju
+wujek pije kompot przy stole
+dziecko rysuje ptaka w domu
+dziewczynka je sernik w przedszkolu
+ciocia je pomidor w ogrodzie
+babcia smaży jajecznicę w domu
+dziecko maluje obraz na dywanie
+
+--- wzór S_I_S_M: 40398 zdań (1 talia: 1056, 2 talie: 28926)
+winogrono i melon na straganie
+samochód i motor w garażu
+laleczka i misiaczek na trawie
+rogal i bułeczka na tacy
+piernik i ciasto w torbie
+sąsiad i dziadek na lotnisku
+sukienka i sweterek w praniu
+synek i tata w salonie
+sikorka i wrona na płocie
+koszula i kurtka na podłodze
+mama i sąsiad w namiocie
+kózka i cielak na pastwisku
+pierogi i naleśnik na talerzu
+tulipan i konwalia na parapecie
+kura i źrebak na farmie
+wilczek i łoś na polanie
+grusza i lipa na łące
+autobus i taksówka na moście
+ciasto i bułka w sklepie
+grusza i dąb na łące
+mewa i bocian na dachu
+dzbanek i łyżka w zlewie
+dzięcioł i kukułka na drzewie
+indyk i kurczak w zagrodzie
+cielak i owca na pastwisku
+kaczka i owieczka na łące
+kaczka i kurka na farmie
+dziecko i mama na farmie
+gęś i owieczka na farmie
+wujek i sąsiad na spacerze
+
+--- wzór SC_I_O: 196152 zdań (1 talia: 1024, 2 talie: 94748)
+ciocia widzi krowę i księżyc
+dziewczynka rysuje drzewo i rakietę
+brat ma kota i rolki
+dziecko ma kotka i balon
+wujek karmi psa i chomika
+dziecko widzi samolot i bociana
+wujek je maliny i sernik
+córeczka lubi owoce i psy
+wujek je kluski i ciastko
+mama lubi kakao i banany
+córeczka ma okulary i piórnik
+brat lubi śnieg i szarlotkę
+synek lubi koty i mleko
+dziadek je sałatkę i frytki
+ciocia je makaron i kanapkę
+brat rysuje auto i rycerza
+siostra ma papugę i puzzle
+dziadek zakłada buty i kurtkę
+dziewczynka je omlet i jagody
+siostra widzi traktor i ślimaka
+tata je budyń i gruszkę
+brat ma okulary i piłkę
+chłopiec widzi zająca i kałużę
+ciocia je sałatkę i owsiankę
+brat widzi statek i kota
+mama lubi pizzę i kąpiel
+chłopiec rysuje rycerza i smoka
+dziecko rysuje dziadka i literę
+ciocia ma klucz i urodziny
+dziewczynka ma kanapkę i lalkę
+
+--- wzór S_JEST_A_I_A: 29656 zdań (1 talia: 96, 2 talie: 19574)
+papużka jest stara i kolorowa
+borsuk jest śpiący i stary
+królik jest stary i wesoły
+koszulka jest różowa i brudna
+kukułka jest śpiąca i duża
+aligator jest śpiący i stary
+kubek jest nowy i mały
+chomik jest miły i wesoły
+kałamarnica jest zdrowa i duża
+jabłko jest smaczne i dojrzałe
+but jest stary i mały
+spódnica jest niebieska i brudna
+wierzba jest młoda i piękna
+krzew jest duży i zielony
+hipopotam jest mały i głodny
+żabka jest zielona i głodna
+maluch jest duży i kochany
+listonosz jest mądry i dobry
+cebula jest świeża i zdrowa
+małpka jest stara i duża
+szlafrok jest nowy i żółty
+koszula jest kolorowa i czysta
+kaczuszka jest młoda i wesoła
+aligator jest duży i groźny
+jeż jest śpiący i stary
+czapka jest kolorowa i różowa
+sąsiadka jest zdrowa i zmęczona
+szklanka jest pusta i czysta
+łódź jest mała i szybka
+kociak jest puszysty i wesoły
+
+--- wzór AS_JEST_M: 75129 zdań (1 talia: 1270, 2 talie: 53758)
+silny tata jest w aptece
+czarny tramwaj jest na moście
+zdrowa babcia jest w sadzie
+mądry czarodziej jest na strychu
+smutny chłopiec jest na kucyku
+zdrowy przedszkolak jest na hulajnodze
+nowy widelec jest w szufladzie
+mądra mama jest w bibliotece
+zmęczona pani jest w przedpokoju
+kochana ciocia jest na fotelu
+grzeczny pierwszak jest przy biurku
+wesoła siostrzyczka jest przy kominku
+mały pies jest na fotelu
+mały dom jest na wsi
+śpiący kociak jest pod krzesłem
+groźny dinozaur jest na wyspie
+kochana pani jest na farmie
+puszysty koteczek jest w pudełku
+szybki helikopter jest nad domem
+czarny piesek jest w śniegu
+młody kocur jest na stoliku
+zdrowy kotek jest na parapecie
+dojrzała morela jest w torbie
+piękna tęcza jest nad morzem
+głodny maluch jest pod stołem
+śpiąca kaczuszka jest w kałuży
+dobra sąsiadka jest w restauracji
+miękki misiek jest w plecaku
+młody piesek jest na spacerze
+głodny jeż jest w ogrodzie
+
+--- wzór M_JEST_AS: 66879 zdań (1 talia: 1209, 2 talie: 48599)
+nad rzeką jest piękna wierzba
+pod drzewem jest duży lew
+w szafce jest niebieska miska
+nad wodą jest szybka jaskółka
+na wieszaku jest ciepła czapeczka
+na płocie jest mała kura
+na ławce jest wesoły braciszek
+na trampolinie jest mały braciszek
+pod prysznicem jest kochany brat
+w górach jest mała koza
+w domu jest miły pies
+pod prysznicem jest miła mama
+na łodzi jest mądry wędkarz
+w koszyku jest świeża poziomka
+w walizce jest ładna czapka
+w kuchni jest kochana ciocia
+na skale jest szybki sokół
+w zmywarce jest pusta filiżanka
+na drodze jest nowy kombajn
+w sklepie jest chrupiąca bułeczka
+na basenie jest mały synek
+na maszcie jest odważny pirat
+na dachu jest duży ptak
+na wieszaku jest żółta czapka
+w ogrodzie jest żółty liść
+na poczcie jest odważna siostrzyczka
+w tunelu jest długa kolejka
+w szkole jest ostry ołówek
+w kuchni jest młody kotek
+pod szafą jest głodna kotka
+
+==========================================================================================
+Zdania długie (4–5 wyrazów) – ŚMIESZNE (przykłady; w aplikacji mniej więcej co czwarte zdanie)
+==========================================================================================
+
+--- wzór zVM
+kura piszczy na miotle
+osa pracuje w kinie
+świnia czyta na weselu
+goryl czyta w muzeum
+słoń tańczy w gnieździe
+bóbr pisze w norce
+jeleń czyta na pustyni
+wielbłąd czyta na suficie
+wąż czaruje w torebce
+ślimak meczy w dzbanku
+czarodziej pełznie w pałacu
+szympans gwiżdże w dzbanku
+kret maluje na komodzie
+kangur ubiera się za szafą
+aktorka pasie się w pudełku
+pstrąg ubiera się pod grzybem
+lampart beczy w kosmosie
+sarna kracze na bałwanie
+goblin klekocze na wycieczce
+rybak pełznie w butelce
+cielaczek tańczy w błocie
+dzięcioł liczy za kominem
+sroka tyka pod łóżkiem
+sikorka gra pod łóżkiem
+pajac huka w orkiestrze
+bocian szczeka na statku
+żuk ślizga się w łóżeczku
+kotek rysuje w bibliotece
+myszka liczy na komodzie
+miś ślizga się na koncercie
+
+--- wzór zPara
+komar i żółw na koniu
+foka i aktor w budzie
+wiedźma i rolnik w banku
+mama i cielaczek w gnieździe
+uczeń i sprzedawca w gnieździe
+małpeczka i wróbelek na karuzeli
+bocian i szwaczka na drzewie
+gęś i mucha w budzie
+pajac i baletnica w wannie
+wrona i kociak na koniu
+karp i sowa w pociągu
+ptak i koń w rakiecie
+łabędź i uczeń w portfelu
+prosiaczek i biedronka w taksówce
+rycerz i szczupak na pustyni
+kaczor i duch pod łóżkiem
+kucharz i pirat na wycieczce
+lemur i robaczek pod stołem
+ptaszek i tukan w dżungli
+siostra i strażak na gałęzi
+łabędź i chomik w autobusie
+foka i misiek w pudełku
+żyrafa i gołąb na wakacjach
+meduza i braciszek na hulajnodze
+rycerz i malarz na zjeżdżalni
+tygrysica i goblin w szkole
+dziecko i małpa w zbroi
+orzeł i rycerz w dziupli
+piłkarz i wróżka w banku
+kura i ptaszyna na huśtawce
+
+--- wzór zAM2
+mądry maluch w norce
+pracowity bóbr na księżycu
+wesoła kucharka w słoiku
+młody kameleon w bibliotece
+ładna pisanka w zegarze
+młody królewicz na rolkach
+śpiący lis na pajęczynie
+wesoły harcerz na rolkach
+młoda lwica w zamku
+smaczna morela na lampie
+głodny borsuk na lodowisku
+złote słońce w autobusie
+miły marynarz na bałwanie
+wesoły kucyk w zoo
+głodny byk na zjeżdżalni
+dobry iluzjonista w łóżeczku
+duży kociak w błocie
+młoda lekarka na trampolinie
+malutka mrówka w szufladzie
+mały pająk na spacerze
+zielony kosmita na miotle
+śpiący krokodyl w szufladzie
+zdrowa koza pod łóżkiem
+miły mechanik pod wycieraczką
+miły uczeń w torebce
+malutki robaczek na statku
+stara pantera przy tablicy
+miły harcerz w piaskownicy
+mały bałwanek w kurniku
+miły braciszek w norce
+
+--- wzór zCM
+aligator maluje tęczę na rowerze
+niemowlę myje łapkę w czajniku
+rybka ma tort w dżungli
+żółw ma grzechotkę na bałwanie
+kaszalot ma grzywę u weterynarza
+gąska ma kotka na rowerze
+koala myje psa w walizce
+zajączek sprząta dom na kucyku
+świerszcz ma okulary w zoo
+gąsior rysuje mapę w pociągu
+kałamarnica pilnuje królewny w kałuży
+piłkarz zbiera orzechy w autobusie
+nosorożec szuka kapci na pajęczynie
+dziecko je miód na drzewie
+zając rysuje auto na deskorolce
+prosię ma skorupę w zamku
+myszka ogląda film w norce
+wrona goni kłębek na lodowisku
+siostra pilnuje zamku w kosmosie
+gołąb ma balony na koniu
+kot buduje tamę na rolkach
+sąsiad ma antenę w kubku
+żaba myje zęby na tronie
+paw ma bródkę na drzewie
+szympans ma lalkę pod choinką
+smok pije nektar pod kołdrą
+kret ma plamy na spacerze
+koteczek zamyka drzwi na pustyni
+narciarz je żabę w skarbonce
+król ma budę w zegarze
+
+--- wzór zSVM
+fryzjerka strzyże w przedszkolu
+owca pije na suficie
+cukierek leży na bałwanie
+maluszek śmieje się w portfelu
+duch straszy w piórniku
+kogut stoi w wannie
+szczeniak czeka na księżycu
+kapusta leży na rolkach
+jednorożec mieszka u lekarza
+królowa tańczy w piórniku
+goryl je na trampolinie
+orzeł siedzi w banku
+krasnoludek śpiewa w namiocie
+ptaszyna śpi w kurniku
+muzyk gra w bibliotece
+samolot leci na szafie
+potwór śpi na traktorze
+kosmonauta pracuje pod choinką
+misiek śpi na plaży
+papużka je na weselu
+żyrafa idzie na pustyni
+łosoś pływa w kurniku
+kierowca trąbi na komodzie
+pszczoła lata na torcie
+księżniczka śpiewa na wakacjach
+aktor śpiewa w zbroi
+niedźwiedź pływa na suficie
+łódź kołysze się na komodzie
+psiak szczeka w autobusie
+siostrzyczka pisze na lianie
+
+--- wzór zMJ
+na tęczy jest bluzka
+w banku jest pluszak
+przy tablicy jest brzoza
+w akwarium jest panda
+w pałacu jest mechanik
+na wyspie jest elf
+w filiżance jest cielak
+w pociągu jest kurczak
+w dżungli jest paw
+pod łóżkiem jest tancerka
+na maszcie jest pieniążek
+w pociągu jest rzodkiewka
+w piórniku jest ciągnik
+w szkole jest weterynarz
+w czajniku jest uczennica
+w namiocie jest skrzat
+w pociągu jest dentysta
+pod grzybem jest leniwiec
+w lunaparku jest kowboj
+w torebce jest wróżka
+w filiżance jest sówka
+w akwarium jest koteczek
+na tronie jest kózka
+na suficie jest kotka
+pod wycieraczką jest goblin
+w kubku jest niedźwiadek
+na kominie jest struś
+w plecaku jest ciocia
+pod wycieraczką jest kierowca
+na kominie jest mgła
+
+--- wzór zAM
+srebrna wiśnia na talerzu
+różowy dzik w lesie
+niebieski dzidziuś w kołysce
+różowa babcia w lesie
+szybka laleczka na łóżku
+złoty wiatr w lesie
+złoty krasnoludek pod grzybem
+niebieski tygrys w klatce
+szybki motylek na łące
+kolorowa syrenka na plaży
+okrągłe lustro na ścianie
+wielka spódnica w szufladzie
+puszysty król na balu
+zielony okoń w stawie
+puszysta lalka za szafą
+puszysty robak w ziemi
+malutki tata w sklepie
+srebrny gołąbek na dachu
+malutka rozgwiazda na skale
+okrągła żołądź w lesie
+puszysta ważka na liściu
+wielkie kakao na stole
+pomarańczowy bałwanek za domem
+wielka wrona na gałęzi
+zielony jogurt w sklepie
+pomarańczowa zupa na stole
+pomarańczowa pszczółka w ogrodzie
+malutki maluch na wsi
+różowy kot na stole
+złoty sąsiad w salonie
+
+--- wzór zJAA
+gąsienica jest okrągła i pomarańczowa
+kolarz jest zielony i złoty
+straszydło jest malutkie i złote
+kompot jest zielony i różowy
+jastrząb jest pachnący i różowy
+harcerz jest fioletowy i zielony
+małpka jest słodka i wielka
+konik jest złoty i zielony
+jeżyk jest słodki i złoty
+dzik jest pomarańczowy i okrągły
+nauczycielka jest puszysta i zielona
+szwaczka jest złota i kolorowa
+betoniarka jest malutka i różowa
+maluszek jest pomarańczowy i zielony
+papuga jest słodka i okrągła
+sikorka jest puszysta i pomarańczowa
+pocztówka jest puszysta i okrągła
+kałuża jest różowa i pomarańczowa
+kanapa jest malutka i puszysta
+łopatka jest puszysta i wielka
+czarodziejka jest złota i pomarańczowa
+tort jest malutki i różowy
+policjantka jest zielona i różowa
+turysta jest malutki i zielony
+gąsior jest malutki i kolorowy
+karuzela jest niebieska i szybka
+dziewczynka jest złota i srebrna
+rękawiczka jest zielona i złota
+królowa jest złota i zielona
+bobas jest złoty i zielony
+
+--- wzór zAC
+wielki konik je siano
+zielony wilk goni zająca
+złoty flaming niesie paczkę
+puszysty koń je jabłko
+wielki książę je jabłka
+malutki przedszkolak robi sieć
+malutki brat niesie listek
+zielony pan widzi mysz
+zielony maluszek ma ząbek
+wielki dentysta ogląda zęby
+wielki sum goni mysz
+szybki słoń pije wodę
+pomarańczowy kocur ma nożyczki
+niebieska czarownica ma kropki
+różowy osiołek je zupę
+złota kurka niesie plecak
+niebieski lew ma tarczę
+miękka tygrysica goni zająca
+różowa baletnica plecie sieć
+różowy tancerz ma paski
+wielki lekarz bada dziecko
+słodki konik ma domek
+kolorowa wróżka spełnia życzenia
+słodki motyl pije nektar
+złoty lis rysuje choinkę
+wielka ptaszyna rysuje trójkąt
+puszysta świnia sprzedaje owoce
+malutkie prosię lubi błoto
+kolorowy ptak je robaka
+fioletowa kukułka je owies
+
+--- wzór zToJA
+to jest pomarańczowy pasikonik
+to jest niebieski łoś
+to jest niebieska kaczka
+to jest kolorowa łyżka
+to jest zielony olbrzym
+to jest różowy ogrodnik
+to jest kolorowa jaskółka
+to jest okrągły stół
+to jest złoty królik
+to jest pachnąca korona
+to jest kolorowy indyk
+to jest puszysty rekin
+to jest malutka mysz
+to jest wielki sum
+to jest wielka fryzjerka
+to jest różowy słonecznik
+to jest różowa pielęgniarka
+to jest okrągła gąsienica
+to jest puszysta ważka
+to jest zielona rybka
+to jest pomarańczowy rybak
+to jest puszysty dżem
+to jest fioletowa kredka
+to jest słodki paw
+to jest zielona malina
+to jest wielki cielaczek
+to jest wielka ptaszyna
+to jest pachnąca gąsienica
+to jest pomarańczowy cielaczek
+to jest malutki kosmonauta
