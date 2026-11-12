@@ -2,7 +2,7 @@
 
 Słowa są grupowane po liczbie liter: 3, 4, 5, 6, 7, 8 i "9+" (9 i więcej).
 Dla każdego słowa liczy się podział na karty z talii oraz dwie flagi:
-  z – da się je ułożyć z jednego zestawu kart,
+  z – da się je ułożyć z TALIE zestawów kart (domyślnie 2),
   d – zawiera dwuznak lub zmiękczenie (osobna karta, np. „sz”, „ci”).
 
 Użycie:
@@ -23,6 +23,14 @@ for c in "aeimot":
 for c in ["cz", "ch", "sz", "rz", "dż", "dzi", "dź", "ni", "si", "ci", "dz", "zi"]:
     KARTY[c] = 1
 WIELOZNAKI = sorted([k for k in KARTY if len(k) > 1], key=len, reverse=True)
+
+# Ile zestawów kart mamy do układania (przełącznik w aplikacji i limit dla zdań).
+TALIE = 2
+
+
+def miesci_sie(karty, talie=TALIE):
+    """Czy z podanych kart (lista) da się ułożyć tekst, mając `talie` zestawów kart."""
+    return all(KARTY.get(k, 0) * talie >= karty.count(k) for k in set(karty))
 
 
 def na_karty(slowo):
@@ -78,17 +86,16 @@ def main(sjp=None):
     dane = {}
     for w in sorted(widziane, key=klucz_sortowania):
         karty = na_karty(w)
-        potrzeba = {k: karty.count(k) for k in karty}
-        z_zestawu = all(KARTY.get(k, 0) >= n for k, n in potrzeba.items())
+        z_zestawu = miesci_sie(karty)
         dwuznak = any(len(k) > 1 for k in karty)
         dane.setdefault(grupa(w), []).append({"s": w, "k": karty, "z": z_zestawu, "d": dwuznak})
     dane = dict(sorted(dane.items(), key=lambda kv: int(kv[0].rstrip("+"))))
 
     for dl, l in dane.items():
-        print(f"{dl:>2} liter: {len(l):4} słów | {sum(x['z'] for x in l):4} z 1 zestawu | "
+        print(f"{dl:>2} liter: {len(l):4} słów | {sum(x['z'] for x in l):4} z {TALIE} zestawów | "
               f"{sum(not x['d'] for x in l):4} bez dwuznaków | {sum(x['z'] and not x['d'] for x in l):4} oba warunki")
     razem = [x for l in dane.values() for x in l]
-    print(f"RAZEM:    {len(razem):4} słów | {sum(x['z'] for x in razem):4} z 1 zestawu | "
+    print(f"RAZEM:    {len(razem):4} słów | {sum(x['z'] for x in razem):4} z {TALIE} zestawów | "
           f"{sum(not x['d'] for x in razem):4} bez dwuznaków | {sum(x['z'] and not x['d'] for x in razem):4} oba warunki")
     return dane
 
@@ -105,7 +112,7 @@ if __name__ == "__main__":
     if argumenty:
         with open(argumenty[0], "w", encoding="utf-8") as f:
             f.write("// Listy słów dla aplikacji Geniuszek od Pieluszek (wygenerowane przez narzedzia/build_words.py)\n")
-            f.write("// s = słowo, k = karty po kolei, z = da się ułożyć z jednego zestawu, d = ma dwuznak/zmiękczenie\n")
+            f.write("// s = słowo, k = karty po kolei, z = da się ułożyć z " + str(TALIE) + " zestawów kart, d = ma dwuznak/zmiękczenie\n")
             f.write("window.SLOWA = ")
             json.dump(dane, f, ensure_ascii=False, separators=(",", ":"))
             f.write(";\n")

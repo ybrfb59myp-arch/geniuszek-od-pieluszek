@@ -155,8 +155,8 @@
   <summary>Ustawienia</summary>
   <div class="opcje">
     <label><input type="checkbox" id="zestaw" checked>
-      <span>Tylko słowa i zdania, które da się ułożyć z jednego zestawu kart
-      <small>Pomija np. „lala” czy „kubek”, bo w talii jest tylko jedna karta L i jedna K.</small></span></label>
+      <span>Tylko słowa, które da się ułożyć z dwóch zestawów kart
+      <small>Pomija np. „kukułka” czy „skakanka” (za dużo K). Zdania zawsze mieszczą się w dwóch taliach.</small></span></label>
     <label><input type="checkbox" id="bezDwuznakow">
       <span>Bez dwuznaków i zmiękczeń (sz, cz, ch, rz, dz, ni, si, ci, zi…)
       <small>Przydatne przed etapem 4 – same pojedyncze litery.</small></span></label>
@@ -241,15 +241,15 @@ function losujSlowo() {
 function dlugoscSlowa(x) { return x.s.length >= 9 ? "9+" : String(x.s.length); }
 
 // ----- zdania -----
-// ZDANIA = { podmiot: [[reszta zdania, z, d], ...] }. Najpierw losujemy podmiot (każdy tak samo często),
+// ZDANIA = { podmiot: [[reszta zdania, d], ...] } – wszystkie mieszczą się w dwóch taliach. Najpierw losujemy podmiot (każdy tak samo często),
 // potem resztę zdania – inaczej większość zdań zaczynałaby się od „mama” czy „dziecko”.
 const pulaZdanCache = {};
 function pulaZdan() {
-  const k = [el.zestaw.checked, el.bez.checked].join("|");
+  const k = String(el.bez.checked);
   if (!pulaZdanCache[k]) {
     const p = {};
     for (const [podmiot, lista] of Object.entries(window.ZDANIA || {})) {
-      const ok = lista.filter(x => (!el.zestaw.checked || x[1]) && (!el.bez.checked || !x[2])).map(x => x[0]);
+      const ok = lista.filter(x => !el.bez.checked || !x[1]).map(x => x[0]);
       if (ok.length) p[podmiot] = ok;
     }
     pulaZdanCache[k] = p;

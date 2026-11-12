@@ -9,8 +9,9 @@ Dwuznaki i zmiękczenia układane są z jednej karty, tak jak w talii:
 
 ## Ustawienia (pod przyciskiem ⚙ Ustawienia)
 
-- **Tylko słowa, które da się ułożyć z jednego zestawu kart** (domyślnie włączone) – w talii
-  podwójne są tylko A, E, I, M, O, T; pozostałe karty występują raz.
+- **Tylko słowa, które da się ułożyć z dwóch zestawów kart** (domyślnie włączone) – w jednej talii
+  podwójne są tylko A, E, I, M, O, T; pozostałe karty występują raz. Liczbę talii ustawia
+  `TALIE` w `narzedzia/build_words.py`.
 - **Bez dwuznaków i zmiękczeń** – same pojedyncze litery (przed etapem 4 metody).
 
 „Losowa długość” najpierw losuje długość (każda tak samo często), potem słowo.
@@ -29,12 +30,12 @@ Spacja lub Enter też losuje kolejne słowo.
   (z opcją `--sjp slowa-sjp.txt` sprawdza też każde słowo w słowniku do gier SJP.pl,
   plik do pobrania z https://sjp.pl/sl/growy/)
 
-- `zdania.js` – proste zdania z 3 wyrazów (generowane; tryb zdań w aplikacji – w przygotowaniu)
+- `zdania.js` – proste zdania z 3 wyrazów (generowane); tylko takie, które mieszczą się w dwóch taliach
 - `narzedzia/build_zdania.py` – buduje `zdania.js` z podmiotów i pasujących do nich wyrażeń
   („kot” + „na stole”, „mama” + „czyta książkę”); po zmianie:
   `python3 narzedzia/build_zdania.py zdania.js --lista narzedzia/zdania-lista.txt`
 - `narzedzia/zdania-lista.txt` – wszystkie zdania do przejrzenia (generowane), z oznaczeniem,
-  które mieszczą się w jednej talii
+  które mieszczą się nawet w jednej talii
 
 ## Skąd są słowa
 
