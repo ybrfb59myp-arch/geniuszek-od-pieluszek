@@ -4,6 +4,7 @@ Zdania powstają z połączenia PODMIOTU (forma podstawowa, np. „kot”) z WYR
 z dwóch wyrazów – miejscem („na stole”, „pod kocem”) albo czynnością („pije mleko”).
 Każdy podmiot ma przypisane tylko te grupy wyrażeń, które do niego pasują
 (kot może być „na szafie”, ale krowa już nie), więc zdania mają sens.
+Zdania, których nie da się ułożyć z TALIE zestawów kart (build_words.py, domyślnie 2), są pomijane.
 
 Edycja: dopisz podmiot do istniejącej grupy albo nowe wyrażenie do grupy w słownikach
 poniżej. Grupę wyrażeń wstawia się do listy pisząc @nazwa. Elementy oddziela się znakiem |.
@@ -12,10 +13,9 @@ Użycie:
   python3 narzedzia/build_zdania.py zdania.js [--sjp slowa-sjp.txt] [--lista narzedzia/zdania-lista.txt]
 """
 import json, os, sys
-from collections import Counter
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from build_words import KARTY, na_karty, klucz_sortowania  # noqa: E402
+from build_words import TALIE, na_karty, miesci_sie, klucz_sortowania  # noqa: E402
 
 # ---------------------------------------------------------------------------------------------
 # MIEJSCA – grupy wyrażeń „przyimek + rzeczownik”
@@ -706,11 +706,8 @@ def zbuduj():
     return sorted(set(zdania), key=klucz_sortowania)
 
 
-def flagi(zdanie):
-    karty = [k for w in zdanie.split() for k in na_karty(w)]
-    z = all(KARTY.get(k, 0) >= n for k, n in Counter(karty).items())
-    d = any(len(k) > 1 for k in karty)
-    return z, d
+def karty_zdania(zdanie):
+    return [k for w in zdanie.split() for k in na_karty(w)]
 
 
 if __name__ == "__main__":
@@ -730,27 +727,31 @@ if __name__ == "__main__":
         brak = sorted({w for z in zdania for w in z.split() if w not in sjp and w not in jednoliterowe})
         if brak:
             print("Wyrazów nie ma w słowniku do gier SJP.pl:", ", ".join(brak)); sys.exit(1)
-    dane = [[z, *map(int, flagi(z))] for z in zdania]
+    wszystkie = len(zdania)
+    zdania = [z for z in zdania if miesci_sie(karty_zdania(z))]
+    # [zdanie, mieści się w 1 talii, ma dwuznak/zmiękczenie]
+    dane = [[z, int(miesci_sie(karty_zdania(z), 1)), int(any(len(k) > 1 for k in karty_zdania(z)))] for z in zdania]
     n = len(dane)
-    print(f"Zdań: {n} | z 1 zestawu: {sum(x[1] for x in dane)} | bez dwuznaków: {sum(not x[2] for x in dane)} | "
-          f"oba warunki: {sum(x[1] and not x[2] for x in dane)}")
+    print(f"Zdań: {n} (pominięte, bo nie mieszczą się w {TALIE} taliach: {wszystkie - n}) | "
+          f"z 1 talii: {sum(x[1] for x in dane)} | bez dwuznaków: {sum(not x[2] for x in dane)}")
     if arg:
         # Pogrupowane po podmiocie, żeby aplikacja mogła najpierw losować podmiot (inaczej ponad połowa
         # zdań zaczynałaby się od „mama”, „dziecko” itp., bo ludzie mają najwięcej pasujących wyrażeń).
         grupy = {}
-        for z, zt, dw in dane:
+        for z, _, dw in dane:
             p, reszta = z.split(" ", 1)
-            grupy.setdefault(p, []).append([reszta, zt, dw])
+            grupy.setdefault(p, []).append([reszta, dw])
         with open(arg[0], "w", encoding="utf-8") as f:
             f.write("// Zdania z 3 wyrazów dla aplikacji Geniuszek od Pieluszek (wygenerowane przez narzedzia/build_zdania.py)\n")
-            f.write("// { podmiot: [[reszta zdania, z, d], ...] }: z = 1 jeśli całe zdanie da się ułożyć z jednego\n")
-            f.write("// zestawu kart, d = 1 jeśli zdanie ma dwuznak/zmiękczenie\n")
+            f.write(f"// {{ podmiot: [[reszta zdania, d], ...] }}: d = 1 jeśli zdanie ma dwuznak/zmiękczenie.\n")
+            f.write(f"// Są tylko zdania, które da się ułożyć z {TALIE} zestawów kart.\n")
             f.write("window.ZDANIA = ")
             json.dump(grupy, f, ensure_ascii=False, separators=(",", ":"))
             f.write(";\n")
     if lista:
         with open(lista, "w", encoding="utf-8") as f:
             f.write("# Wszystkie zdania (wygenerowane przez build_zdania.py – nie edytować ręcznie).\n")
-            f.write("# Znaczniki: [T] = mieści się w jednej talii, [D] = ma dwuznak lub zmiękczenie.\n\n")
+            f.write(f"# Wszystkie mieszczą się w {TALIE} taliach. Znaczniki: [1T] = mieści się nawet w jednej talii,\n")
+            f.write("# [D] = ma dwuznak lub zmiękczenie.\n\n")
             for z, zt, dw in dane:
-                f.write(f"{z}{'  [T]' if zt else ''}{'  [D]' if dw else ''}\n")
+                f.write(f"{z}{'  [1T]' if zt else ''}{'  [D]' if dw else ''}\n")
