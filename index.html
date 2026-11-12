@@ -68,7 +68,6 @@
   #slowo { display: flex; flex-direction: column; align-items: center; gap: var(--odstep-wierszy, 0); margin-top: auto; }
   .linia { display: flex; align-items: center; gap: var(--odstep-slow, 0); }
   .wyraz { display: flex; align-items: center; }
-  .linia .wyraz + .wyraz { filter: drop-shadow(2px 2px 4px rgba(60, 20, 70, .18)); }
   .karta {
     display: block; width: var(--w); height: calc(var(--w) * 0.7104); flex: none;
     border-radius: calc(var(--w) * 0.05);
@@ -270,10 +269,10 @@ function losujZdanie() {
 const losuj = () => trybZdan() ? losujZdanie() : losujSlowo();
 
 // ----- układ i rysowanie -----
-// Ile szerokości karty zajmuje wyraz: pierwsza karta cała (albo tylko jej prawa część z małą literą,
-// jeśli to nie pierwszy wyraz zdania), z każdej kolejnej karty widać część (1 - h).
-function jednostkiWyrazu(karty, pierwszy) {
-  return (pierwszy ? 1 : 1 - KARTY[karty[0]].h) + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
+// Ile szerokości karty zajmuje wyraz: pierwsza karta cała (duża i mała litera, jak na prawdziwych kartach),
+// z każdej kolejnej karty widać część (1 - h).
+function jednostkiWyrazu(karty) {
+  return 1 + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
 }
 
 // Wolne miejsce na karty: szerokość obszaru i wysokość ekranu pod przyciskami, bez „Ustawień” na dole.
@@ -295,8 +294,8 @@ function uklad(wyrazy) {
   let najlepszy = null;
   for (const podzial of podzialy) {
     const wiersze = []; let i = 0;
-    for (const ile of podzial) { wiersze.push(wyrazy.slice(i, i + ile).map((k, j) => ({ karty: k, pierwszy: i + j === 0 }))); i += ile; }
-    const maksJedn = Math.max(...wiersze.map(r => r.reduce((s, x) => s + jednostkiWyrazu(x.karty, x.pierwszy), 0) + ODSTEP_SLOW * (r.length - 1)));
+    for (const ile of podzial) { wiersze.push(wyrazy.slice(i, i + ile)); i += ile; }
+    const maksJedn = Math.max(...wiersze.map(r => r.reduce((s, karty) => s + jednostkiWyrazu(karty), 0) + ODSTEP_SLOW * (r.length - 1)));
     const L = wiersze.length;
     const w = Math.floor(Math.min(MAKS_SZER, szer / maksJedn, wys / (L * PROPORCJA + (L - 1) * ODSTEP_WIERSZY)));
     if (!najlepszy || w > najlepszy.w + 4) najlepszy = { w, wiersze };   // przy remisie mniej wierszy
@@ -333,15 +332,9 @@ function pokaz(x, animuj = true) {
   for (const wiersz of wiersze) {
     const linia = document.createElement("div");
     linia.className = "linia";
-    for (const { karty, pierwszy } of wiersz) {
+    for (const karty of wiersz) {
       const wyraz = document.createElement("div");
       wyraz.className = "wyraz";
-      if (!pierwszy) {
-        // Kolejny wyraz zdania: ucinamy z lewej część pierwszej karty z wielką literą.
-        const x = Math.round(KARTY[karty[0]].h * w), r = Math.round(w * 0.05);
-        wyraz.style.marginLeft = -x + "px";
-        wyraz.style.clipPath = wyraz.style.webkitClipPath = `inset(0 -40px 0 ${x}px round ${r}px 0 0 ${r}px)`;
-      }
       karty.forEach((k, i) => {
         const karta = nowaKarta(k);
         karta.style.zIndex = String(wszystkich - nr);                    // wcześniejsza karta na wierzchu
