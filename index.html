@@ -101,7 +101,7 @@
     details { margin-bottom: 4px; }
     summary { padding: 4px; }
   }
-  #obroc { margin: 18px 0 0; color: #9a879e; font-size: 15px; text-align: center; }
+  #obroc { margin: 18px 0 12px; color: #9a879e; font-size: 15px; text-align: center; }
   .pusto { color: #8a6f8f; font-size: 18px; text-align: center; max-width: 30em; line-height: 1.5; }
 
   details {
@@ -115,6 +115,9 @@
   .opcje label { display: flex; gap: 10px; align-items: flex-start; padding: 6px 0; cursor: pointer; line-height: 1.35; }
   .opcje input { width: 20px; height: 20px; margin: 0; flex: none; accent-color: var(--fiolet); }
   .opcje small { display: block; color: #9a879e; }
+  .talie { display: flex; flex-wrap: wrap; gap: 4px 18px; align-items: center; padding: 6px 0; line-height: 1.35; }
+  .talie small { flex-basis: 100%; }
+  .opcje .talie label { padding: 2px 0; align-items: center; gap: 8px; }
   #licznik { margin: 6px 0 0; color: #9a879e; text-align: right; }
 </style>
 </head>
@@ -136,7 +139,8 @@
           <option value="los">Losowa długość</option>
         </optgroup>
         <optgroup label="Zdania">
-          <option value="zdanie">Zdanie (3 słowa)</option>
+          <option value="zk">Zdania krótkie (2–3 słowa)</option>
+          <option value="zd">Zdania długie (4–5 słów)</option>
         </optgroup>
       </select>
     </label>
@@ -146,7 +150,7 @@
 
 <main>
   <div id="slowo" role="img" aria-live="polite">
-    <p class="pusto">Wybierz długość słowa i naciśnij <b>Losuj słowo</b>.</p>
+    <p class="pusto">Wybierz długość słowa albo zdania i naciśnij przycisk losowania.</p>
   </div>
   <p id="obroc" hidden>↻ Obróć telefon poziomo – karty będą większe.</p>
 </main>
@@ -154,9 +158,13 @@
 <details>
   <summary>Ustawienia</summary>
   <div class="opcje">
-    <label><input type="checkbox" id="zestaw" checked>
-      <span>Tylko słowa, które da się ułożyć z dwóch zestawów kart
-      <small>Pomija np. „kukułka” czy „skakanka” (za dużo K). Zdania zawsze mieszczą się w dwóch taliach.</small></span></label>
+    <div class="talie" role="radiogroup" aria-labelledby="talieOpis">
+      <span id="talieOpis">Układam z:</span>
+      <label><input type="radio" name="talie" value="1" checked> jednej talii</label>
+      <label><input type="radio" name="talie" value="2"> dwóch talii</label>
+      <small>Pokazuje tylko słowa i zdania, które da się ułożyć z tylu talii. W talii jest 51 kart:
+      A ×3; E, K, M, O, T ×2; pozostałe po jednej.</small>
+    </div>
     <label><input type="checkbox" id="bezDwuznakow">
       <span>Bez dwuznaków i zmiękczeń (sz, cz, ch, rz, dz, ni, si, ci, zi…)
       <small>Przydatne przed etapem 4 – same pojedyncze litery.</small></span></label>
@@ -164,8 +172,12 @@
   </div>
 </details>
 
-<script src="slowa.js"></script>
-<script src="zdania.js"></script>
+<!-- ?v=… wymusza pobranie nowych plików po zmianie formatu danych (zwiększ przy takiej zmianie) -->
+<script src="talia.js?v=3"></script>
+<script src="slowa.js?v=3"></script>
+<script src="zdania.js?v=3"></script>
+<script src="zdania-liczby.js?v=3"></script>
+<script src="generator.js?v=3"></script>
 <script>
 // Karty z talii: plik obrazka i jaka część karty (od lewej) chowa się pod poprzednią kartą,
 // tak żeby z każdej kolejnej karty była widoczna mała litera (albo cały dwuznak).
@@ -174,32 +186,29 @@ const PROPORCJA = 341 / 480;   // wysokość / szerokość karty
 const MAKS_SZER = 300;         // największa szerokość jednej karty w px
 const ODSTEP_SLOW = 0.3;       // przerwa między słowami w zdaniu (w szerokościach karty)
 const ODSTEP_WIERSZY = 0.16;   // przerwa między wierszami zdania (w szerokościach karty)
-const WIELOZNAKI = Object.keys(KARTY).filter(k => k.length > 1).sort((a, b) => b.length - a.length);
+
+// Generator zdań (generator.js) – zna też skład talii (talia.js) i podział wyrazu na karty.
+const GEN = GeneratorZdan.utworz(window.ZDANIA, window.TALIA);
+const naKarty = GEN.naKarty;
 
 const $ = id => document.getElementById(id);
-const el = { dl: $("dlugosc"), losuj: $("losuj"), slowo: $("slowo"), zestaw: $("zestaw"), bez: $("bezDwuznakow"), licznik: $("licznik") };
+const el = { dl: $("dlugosc"), losuj: $("losuj"), slowo: $("slowo"), bez: $("bezDwuznakow"), licznik: $("licznik"),
+             talie: [...document.querySelectorAll('input[name="talie"]')] };
+const talie = () => Number(el.talie.find(r => r.checked).value);   // z ilu talii układamy: 1 albo 2
 
 // Zapamiętane ustawienia (jeśli przeglądarka pozwala).
 const pamiec = {
   get(k, d) { try { const v = localStorage.getItem("gop_" + k); return v === null ? d : JSON.parse(v); } catch { return d; } },
   set(k, v) { try { localStorage.setItem("gop_" + k, JSON.stringify(v)); } catch {} }
 };
-{ const z = String(pamiec.get("dl", "3")); el.dl.value = [...el.dl.options].some(o => o.value === z) ? z : "3"; }
-el.zestaw.checked = pamiec.get("zestaw", true);
+{ let z = String(pamiec.get("dl", "3")); if (z === "zdanie") z = "zk";
+  el.dl.value = [...el.dl.options].some(o => o.value === z) ? z : "3"; }
+{ const t = String(pamiec.get("talie", 1)); (el.talie.find(r => r.value === t) || el.talie[0]).checked = true; }
 el.bez.checked = pamiec.get("bez", false);
 
 const DLUGOSCI = ["3", "4", "5", "6", "7", "8", "9+"];
-const trybZdan = () => el.dl.value === "zdanie";
-
-// Dzieli wyraz na karty: najpierw dzi, potem dwuznaki, potem pojedyncze litery (jak build_words.py).
-function naKarty(wyraz) {
-  const out = [];
-  for (let i = 0; i < wyraz.length;) {
-    const z = WIELOZNAKI.find(k => wyraz.startsWith(k, i)) || wyraz[i];
-    out.push(z); i += z.length;
-  }
-  return out;
-}
+const trybZdan = () => el.dl.value === "zk" || el.dl.value === "zd";
+const rodzajZdan = () => el.dl.value === "zk" ? "k" : "d";         // krótkie (2–3 słowa) albo długie (4–5 słów)
 
 function tasuj(t) {
   for (let i = t.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [t[i], t[j]] = [t[j], t[i]]; }
@@ -208,14 +217,14 @@ function tasuj(t) {
 
 // ----- słowa -----
 function pula(dl) {
-  return (SLOWA[dl] || []).filter(x => (!el.zestaw.checked || x.z) && (!el.bez.checked || !x.d));
+  return (SLOWA[dl] || []).filter(x => x.t <= talie() && (!el.bez.checked || !x.d));
 }
 
 // „Worki” – osobny dla każdej długości; losujemy bez powtórzeń, dopóki nie przejdziemy całej puli.
 const worki = {};
 let ostatnie = null, biezace = null;
 function zWorka(klucz, zrodlo) {
-  const k = [klucz, el.zestaw.checked, el.bez.checked].join("|");
+  const k = [klucz, talie(), el.bez.checked].join("|");
   let w = worki[k];
   if (!w || !w.length) {
     w = worki[k] = tasuj(zrodlo().slice());
@@ -241,29 +250,15 @@ function losujSlowo() {
 function dlugoscSlowa(x) { return x.s.length >= 9 ? "9+" : String(x.s.length); }
 
 // ----- zdania -----
-// ZDANIA = { podmiot: [[reszta zdania, d], ...] } – wszystkie mieszczą się w dwóch taliach. Najpierw losujemy podmiot (każdy tak samo często),
-// potem resztę zdania – inaczej większość zdań zaczynałaby się od „mama” czy „dziecko”.
-const pulaZdanCache = {};
-function pulaZdan() {
-  const k = String(el.bez.checked);
-  if (!pulaZdanCache[k]) {
-    const p = {};
-    for (const [podmiot, lista] of Object.entries(window.ZDANIA || {})) {
-      const ok = lista.filter(x => !el.bez.checked || !x[1]).map(x => x[0]);
-      if (ok.length) p[podmiot] = ok;
-    }
-    pulaZdanCache[k] = p;
-  }
-  return pulaZdanCache[k];
-}
+// Zdania układa generator.js: losuje podmiot (każdy tak samo często) i dobiera do niego pasujące elementy,
+// a mniej więcej co czwarte zdanie jest śmieszne. Od razu pomija zdania, których nie da się ułożyć z talii.
 function losujZdanie() {
-  const p = pulaZdan();
-  const podmiot = zWorka("zdania", () => Object.keys(p).map(s => ({ s })));
-  if (!podmiot) return null;
-  ostatnie = podmiot.s;
-  const reszty = p[podmiot.s];
-  const s = podmiot.s + " " + reszty[Math.floor(Math.random() * reszty.length)];
-  return { s, w: s.split(" ").map(naKarty) };
+  const opcje = { talie: talie(), bezDwuznakow: el.bez.checked };
+  let r = GEN.losuj(rodzajZdan(), opcje);
+  if (r && r.s === ostatnie) r = GEN.losuj(rodzajZdan(), opcje) || r;
+  if (!r) return null;
+  ostatnie = r.s;
+  return { s: r.s, w: r.w.map(naKarty) };
 }
 
 const losuj = () => trybZdan() ? losujZdanie() : losujSlowo();
@@ -286,11 +281,13 @@ function wolneMiejsce() {
 // Dzieli wyrazy na wiersze tak, żeby karty były jak największe.
 function uklad(wyrazy) {
   const { szer, wys } = wolneMiejsce();
-  const n = wyrazy.length;
-  const podzialy = [[n]];
-  if (n === 2) podzialy.push([1, 1]);
-  if (n === 3) podzialy.push([2, 1], [1, 2], [1, 1, 1]);
-  if (n > 3) podzialy.push([Math.ceil(n / 2), Math.floor(n / 2)]);
+  // Wszystkie podziały kolejnych wyrazów na wiersze (dla 5 wyrazów jest ich 16), od najmniejszej liczby wierszy.
+  const podzialy = [];
+  (function dalej(zostalo, akt) {
+    if (!zostalo) { podzialy.push(akt); return; }
+    for (let i = 1; i <= zostalo; i++) dalej(zostalo - i, akt.concat(i));
+  })(wyrazy.length, []);
+  podzialy.sort((a, b) => a.length - b.length);
   let najlepszy = null;
   for (const podzial of podzialy) {
     const wiersze = []; let i = 0;
@@ -356,8 +353,10 @@ function odmiana(n, jeden, kilka, wiele) {
 function odswiez() {
   let n;
   if (trybZdan()) {
-    n = Object.values(pulaZdan()).reduce((a, l) => a + l.length, 0);
-    el.licznik.textContent = "W puli: " + n + " " + odmiana(n, "zdanie", "zdania", "zdań");
+    n = ((window.ZDANIA_LICZBY || {})[rodzajZdan()] || {})[talie()];
+    n = n ? n[el.bez.checked ? 1 : 0] : 0;
+    const ile = n >= 10000 ? "ok. " + Math.round(n / 1000) + " tys. zdań" : n + " " + odmiana(n, "zdanie", "zdania", "zdań");
+    el.licznik.textContent = "W puli: " + ile + ". Do tego co czwarte losowane zdanie jest śmieszne.";
   } else {
     n = el.dl.value === "los" ? DLUGOSCI.reduce((a, d) => a + pula(d).length, 0) : pula(el.dl.value).length;
     el.licznik.textContent = "W puli: " + n + " " + odmiana(n, "słowo", "słowa", "słów");
@@ -367,7 +366,7 @@ function odswiez() {
 
 el.losuj.addEventListener("click", () => pokaz(losuj()));
 el.dl.addEventListener("change", () => { pamiec.set("dl", el.dl.value); odswiez(); pokaz(losuj()); });
-el.zestaw.addEventListener("change", () => { pamiec.set("zestaw", el.zestaw.checked); odswiez(); });
+el.talie.forEach(r => r.addEventListener("change", () => { pamiec.set("talie", talie()); odswiez(); }));
 el.bez.addEventListener("change", () => { pamiec.set("bez", el.bez.checked); odswiez(); });
 document.addEventListener("keydown", e => {
   if ((e.key === " " || e.key === "Enter") && !["SELECT", "INPUT", "BUTTON", "SUMMARY"].includes(document.activeElement.tagName)) {

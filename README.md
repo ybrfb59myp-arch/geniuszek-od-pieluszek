@@ -1,41 +1,63 @@
-# Geniuszek od Pieluszek – losuj słowo
+# Geniuszek od Pieluszek – losuj słowo albo zdanie
 
 Prosta aplikacja do kart edukacyjnych „Geniuszek od Pieluszek”.
-Wybierasz długość słowa (3, 4, 5, 6, 7, 8 albo 9+ liter, albo „Losowa długość”), naciskasz **Losuj słowo**, a słowo pojawia się
-ułożone z kart tak jak na stole: pierwsza karta w całości (np. „Dd”), z kolejnych widać małą literę.
+Wybierasz długość słowa (3–8 albo 9+ liter, albo „Losowa długość”) lub rodzaj zdania, naciskasz przycisk
+losowania, a słowo albo zdanie pojawia się ułożone z kart tak jak na stole: pierwsza karta każdego wyrazu
+w całości (np. „Dd”), z kolejnych widać małą literę.
 
 Dwuznaki i zmiękczenia układane są z jednej karty, tak jak w talii:
 `ch cz sz rz dz dż dź dzi ci si zi ni` – np. „ciasto” = **ci** · a · s · t · o.
 
+## Talia
+
+Jedna talia ma 51 kart: **A ×3; E, K, M, O, T ×2; pozostałe karty po jednej** (32 litery i 12 dwuznaków).
+Skład został wyliczony tak, żeby z jednej talii dało się ułożyć jak najwięcej słów z listy
+(ok. 89%, w tym „mama” i „tata”). Ustawia go `KARTY` w `narzedzia/build_words.py`.
+
+## Zdania
+
+- **Zdania krótkie** – 2–3 słowa: „kot śpi”, „mały kot”, „kot na stole”, „mama je zupę”, „to jest kot”,
+  „kot i pies”.
+- **Zdania długie** – 4–5 słów: „kot śpi na kanapie”, „mały kot pije mleko”, „na stole jest kubek”,
+  „mama je zupę w kuchni”, „kot i pies w domu”, „kot jest mały i rudy”.
+
+Zdania układa na bieżąco `generator.js`: losuje podmiot (każdy tak samo często) i dobiera do niego
+elementy, które do niego pasują. Mniej więcej **co czwarte zdanie jest śmieszne** – podmiot dostaje
+element, który do niego nie pasuje („krowa miauczy na szafie”, „różowy tata znosi jajka”).
+Czasowniki są tylko w formie „kot śpi” (3. osoba liczby pojedynczej, czas teraźniejszy).
+
 ## Ustawienia (pod przyciskiem ⚙ Ustawienia)
 
-- **Tylko słowa, które da się ułożyć z dwóch zestawów kart** (domyślnie włączone) – w jednej talii
-  podwójne są tylko A, E, I, M, O, T; pozostałe karty występują raz. Liczbę talii ustawia
-  `TALIE` w `narzedzia/build_words.py`.
+- **Układam z jednej / dwóch talii** (domyślnie z jednej) – pokazuje tylko słowa i zdania, które da się
+  ułożyć z tylu talii. Z jednej talii mieści się ok. 89% słów, ok. 28% zdań krótkich i ok. 2% długich;
+  z dwóch prawie wszystkie słowa, ok. 93% zdań krótkich i ok. 68% długich.
 - **Bez dwuznaków i zmiękczeń** – same pojedyncze litery (przed etapem 4 metody).
 
 „Losowa długość” najpierw losuje długość (każda tak samo często), potem słowo.
 Słowa losowane są bez powtórzeń, dopóki nie przejdzie się całej puli.
-Spacja lub Enter też losuje kolejne słowo.
+Spacja lub Enter też losuje.
 
 ## Pliki
 
-- `index.html` – cała aplikacja
-- `slowa.js` – listy słów (generowane, nie edytować ręcznie)
-- `ikony/`, `manifest.webmanifest` – ikona aplikacji (okrągłe logo) do karty przeglądarki i ekranu głównego
+- `index.html` – aplikacja (wygląd, układ kart, losowanie słów)
+- `generator.js` – układanie zdań i sprawdzanie, czy mieszczą się w talii
 - `karty/` – obrazy kart z literami, wyrenderowane z PDF-a zestawu kart (C7)
-- `narzedzia/slowa.txt` – lista słów do edycji (ok. 2800 słów, 3+ liter; opis źródeł w nagłówku pliku)
-- `narzedzia/build_words.py` – buduje `slowa.js`; po zmianie listy:
-  `python3 narzedzia/build_words.py slowa.js`
-  (z opcją `--sjp slowa-sjp.txt` sprawdza też każde słowo w słowniku do gier SJP.pl,
-  plik do pobrania z https://sjp.pl/sl/growy/)
+- `ikony/`, `manifest.webmanifest` – ikona aplikacji do karty przeglądarki i ekranu głównego
+- pliki generowane (nie edytować ręcznie): `slowa.js` (słowa), `talia.js` (skład talii),
+  `zdania.js` (składniki zdań), `zdania-liczby.js` (ile zdań jest w puli)
 
-- `zdania.js` – proste zdania z 3 wyrazów (generowane); tylko takie, które mieszczą się w dwóch taliach
-- `narzedzia/build_zdania.py` – buduje `zdania.js` z podmiotów i pasujących do nich wyrażeń
-  („kot” + „na stole”, „mama” + „czyta książkę”); po zmianie:
-  `python3 narzedzia/build_zdania.py zdania.js --lista narzedzia/zdania-lista.txt`
-- `narzedzia/zdania-lista.txt` – wszystkie zdania do przejrzenia (generowane), z oznaczeniem,
-  które mieszczą się nawet w jednej talii
+Do edycji, w `narzedzia/`:
+
+- `slowa.txt` – lista słów (ok. 2800 słów, 3+ liter; opis źródeł w nagłówku pliku). Po zmianie:
+  `python3 narzedzia/build_words.py slowa.js`
+- `zdania_dane.py` – podmioty zdań i to, co do nich pasuje: miejsca („na stole”), czynności
+  („je zupę”), czasowniki („śpi”, „miauczy”) i przymiotniki („mały”, „rudy”), a także zasady dla zdań
+  śmiesznych. Po zmianie: `python3 narzedzia/build_zdania.py zdania.js`
+  (skrypt uruchamia też `zdania_narzedzie.js`, które liczy pulę i zapisuje przykłady; potrzebny `node`)
+- `zdania-przyklady.txt` – po 30 przykładów każdego wzoru zdania, do przejrzenia (generowane)
+
+Oba skrypty z opcją `--sjp slowa-sjp.txt` sprawdzają każdy wyraz w słowniku do gier SJP.pl
+(plik do pobrania z https://sjp.pl/sl/growy/).
 
 ## Skąd są słowa
 
