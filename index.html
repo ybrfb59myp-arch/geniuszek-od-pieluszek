@@ -21,12 +21,13 @@
     --tekst: #3a2340;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; height: 100%; }
+  html, body { margin: 0; }
   body {
     background: var(--tlo);
     color: var(--tekst);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    display: flex; flex-direction: column; min-height: 100dvh;
+    /* Co najmniej wysokość ekranu, ale strona może być dłuższa (np. przy otwartych ustawieniach) – wtedy się przewija. */
+    display: flex; flex-direction: column; min-height: 100vh; min-height: 100dvh;
     /* viewport-fit=cover: sami pilnujemy, żeby nic nie wchodziło pod wycięcie ekranu i pasek */
     padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
     -webkit-tap-highlight-color: transparent;
@@ -59,13 +60,17 @@
   button#losuj:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--fiolet-ciemny); }
   button:focus-visible, select:focus-visible { outline: 3px solid var(--bez); outline-offset: 3px; }
 
+  /* Obszar kart wypełnia wolne miejsce, ale nigdy nie jest niższy niż same karty (flex-shrink: 0) –
+     dzięki temu „Ustawienia” są zawsze pod kartami, a nie pod nimi schowane. */
   main {
-    flex: 1; display: flex; flex-direction: column; align-items: center;
-    padding: 16px 12px 24px; min-height: 260px;
+    flex: 1 0 auto; display: flex; flex-direction: column; align-items: center;
+    min-height: 260px;
   }
-  /* Wyśrodkowanie przez auto-marginesy: gdy karty się nie mieszczą, wychodzą w dół, a nie na przyciski. */
+  /* Wyśrodkowanie w pionie przez auto-marginesy. */
   main::after { content: ""; margin-top: auto; }
-  #slowo { display: flex; flex-direction: column; align-items: center; gap: var(--odstep-wierszy, 0); margin-top: auto; }
+  /* Odstęp wokół kart jest większy niż ich cień, więc cień nigdy nie wychodzi poza obszar kart. */
+  #scena { margin-top: auto; padding: 16px 14px 24px; max-width: 100%; }
+  #slowo { display: flex; flex-direction: column; align-items: center; gap: var(--odstep-wierszy, 0); }
   .linia { display: flex; align-items: center; gap: var(--odstep-slow, 0); }
   .wyraz { display: flex; align-items: center; }
   .karta {
@@ -79,30 +84,17 @@
     from { opacity: 0; transform: translateY(-26px) rotate(-3deg); }
     to   { opacity: 1; transform: none; }
   }
-  @media (prefers-reduced-motion: reduce) { .karta { animation: none; } }
+  @media (prefers-reduced-motion: reduce) { .karta, .wczytuje { animation: none; } }
   @media (max-width: 440px) {
     select, button { font-size: 17px; height: 50px; }
     select { padding: 0 38px 0 14px; }
     .wybor::after { right: 15px; }
     button#losuj { padding: 0 18px; }
   }
-  /* Telefon w poziomie: logo i przyciski w jednym rzędzie, żeby karty zmieściły się bez przewijania. */
-  @media (orientation: landscape) and (max-height: 520px) {
-    .gora { display: flex; align-items: center; justify-content: center; gap: 20px;
-            padding: max(8px, env(safe-area-inset-top)) 16px 0; }
-    header { padding: 0; }
-    header img { height: 40px; }
-    .panel { padding: 0; flex-wrap: nowrap; gap: 10px; }
-    select, button { font-size: 17px; height: 46px; }
-    select { padding: 0 38px 0 14px; }
-    .wybor::after { right: 15px; }
-    button#losuj { padding: 0 20px; }
-    main { padding: 6px 12px 6px; min-height: auto; }
-    details { margin-bottom: 4px; }
-    summary { padding: 4px; }
-  }
-  #obroc { margin: 18px 0 12px; color: #9a879e; font-size: 15px; text-align: center; }
-  .pusto { color: #8a6f8f; font-size: 18px; text-align: center; max-width: 30em; line-height: 1.5; }
+  #obroc { margin: 0 12px 12px; color: #9a879e; font-size: 15px; text-align: center; }
+  .pusto { color: #8a6f8f; font-size: 18px; text-align: center; max-width: 30em; line-height: 1.5; margin: 0; }
+  .wczytuje { animation: mruganie 1.2s ease-in-out infinite; }
+  @keyframes mruganie { 50% { opacity: .35; } }
 
   details {
     margin: 0 auto 18px; padding: 0 16px; max-width: 560px; width: 100%;
@@ -119,6 +111,24 @@
   .talie small { flex-basis: 100%; }
   .opcje .talie label { padding: 2px 0; align-items: center; gap: 8px; }
   #licznik { margin: 6px 0 0; color: #9a879e; text-align: right; }
+
+  /* Telefon w poziomie: logo i przyciski w jednym rzędzie, żeby karty zmieściły się bez przewijania.
+     (Na końcu arkusza, żeby te reguły miały pierwszeństwo przed ogólnymi powyżej.) */
+  @media (orientation: landscape) and (max-height: 520px) {
+    .gora { display: flex; align-items: center; justify-content: center; gap: 20px;
+            padding: max(8px, env(safe-area-inset-top)) 16px 0; }
+    header { padding: 0; }
+    header img { height: 40px; }
+    .panel { padding: 0; flex-wrap: nowrap; gap: 10px; }
+    select, button { font-size: 17px; height: 46px; }
+    select { padding: 0 38px 0 14px; }
+    .wybor::after { right: 15px; }
+    button#losuj { padding: 0 20px; }
+    main { min-height: auto; }
+    #scena { padding: 6px 14px 12px; }
+    details { margin-bottom: 4px; }
+    summary { padding: 4px; }
+  }
 </style>
 </head>
 <body>
@@ -149,13 +159,15 @@
 </div>
 
 <main>
-  <div id="slowo" role="img" aria-live="polite">
-    <p class="pusto">Wybierz długość słowa albo zdania i naciśnij przycisk losowania.</p>
+  <div id="scena" aria-live="polite">
+    <div id="slowo">
+      <p class="pusto">Wybierz długość słowa albo zdania i naciśnij przycisk losowania.</p>
+    </div>
   </div>
   <p id="obroc" hidden>↻ Obróć telefon poziomo – karty będą większe.</p>
 </main>
 
-<details>
+<details id="ustawienia">
   <summary>Ustawienia</summary>
   <div class="opcje">
     <div class="talie" role="radiogroup" aria-labelledby="talieOpis">
@@ -192,7 +204,8 @@ const GEN = GeneratorZdan.utworz(window.ZDANIA, window.TALIA);
 const naKarty = GEN.naKarty;
 
 const $ = id => document.getElementById(id);
-const el = { dl: $("dlugosc"), losuj: $("losuj"), slowo: $("slowo"), bez: $("bezDwuznakow"), licznik: $("licznik"),
+const el = { dl: $("dlugosc"), losuj: $("losuj"), slowo: $("slowo"), scena: $("scena"), bez: $("bezDwuznakow"), licznik: $("licznik"),
+             main: document.querySelector("main"), ustawienia: $("ustawienia"), naglowek: document.querySelector("summary"),
              talie: [...document.querySelectorAll('input[name="talie"]')] };
 const talie = () => Number(el.talie.find(r => r.checked).value);   // z ilu talii układamy: 1 albo 2
 
@@ -270,12 +283,15 @@ function jednostkiWyrazu(karty) {
   return 1 + karty.slice(1).reduce((s, k) => s + (1 - KARTY[k].h), 0);
 }
 
-// Wolne miejsce na karty: szerokość obszaru i wysokość ekranu pod przyciskami, bez „Ustawień” na dole.
+// Wolne miejsce na karty: szerokość obszaru i wysokość ekranu pod przyciskami, nad napisem „Ustawienia”.
+// Liczymy tak, jakby ustawienia były zwinięte – po ich rozwinięciu karty zostają bez zmian, a strona się wydłuża.
 function wolneMiejsce() {
-  const main = el.slowo.parentElement;
-  const gora = main.getBoundingClientRect().top + window.scrollY;
-  const dol = document.querySelector("summary").offsetHeight + 34;
-  return { szer: main.clientWidth - 24, wys: Math.max(110, window.innerHeight - gora - dol) };
+  const px = (e, cecha) => parseFloat(getComputedStyle(e)[cecha]) || 0;
+  const gora = el.main.getBoundingClientRect().top + window.scrollY;
+  const ramkaX = px(el.scena, "paddingLeft") + px(el.scena, "paddingRight");
+  const ramkaY = px(el.scena, "paddingTop") + px(el.scena, "paddingBottom");
+  const dol = el.naglowek.offsetHeight + px(el.ustawienia, "marginBottom") + px(document.body, "paddingBottom");
+  return { szer: el.main.clientWidth - ramkaX, wys: Math.max(110, window.innerHeight - gora - ramkaY - dol) };
 }
 
 // Dzieli wyrazy na wiersze tak, żeby karty były jak największe.
@@ -300,39 +316,77 @@ function uklad(wyrazy) {
   return najlepszy;
 }
 
+// ----- obrazki kart -----
+// Każdy obrazek jest pobierany i dekodowany raz, a potem trzymany w pamięci. Karty pokazujemy dopiero wtedy,
+// gdy wszystkie potrzebne obrazki są gotowe – inaczej najpierw widać puste kafelki, a litery dochodzą później.
+const obrazki = {};          // karta -> { img, gotowy: obietnica spełniona po wczytaniu }
+const gotowe = new Set();    // karty z wczytanym obrazkiem
+function wczytaj(k) {
+  if (!obrazki[k]) {
+    const img = new Image();
+    img.src = "karty/" + KARTY[k].f;
+    const wczytany = img.decode ? img.decode() : new Promise((ok, zle) => { img.onload = ok; img.onerror = zle; });
+    obrazki[k] = { img, gotowy: wczytany
+      .then(() => true, () => img.complete && img.naturalWidth > 0)
+      .then(ok => { if (ok) gotowe.add(k); else delete obrazki[k]; }) };   // po błędzie spróbujemy przy następnym losowaniu
+  }
+  return obrazki[k].gotowy;
+}
+
 function nowaKarta(k) {
   const img = document.createElement("img");
   img.className = "karta";
+  img.decoding = "sync";       // rysuj kartę od razu razem z obrazkiem (bez pustego kafelka)
   img.src = "karty/" + KARTY[k].f;
   img.alt = k;
   img.draggable = false;
   return img;
 }
 
-function pokaz(x, animuj = true) {
-  biezace = x;
-  el.slowo.innerHTML = "";
+function komunikat(tekst, klasa = "") {
+  const p = document.createElement("p");
+  p.className = ("pusto " + klasa).trim();
+  p.textContent = tekst;
+  return p;
+}
+
+// iOS potrafi zostawić na ekranie cień po kartach z poprzedniego losowania (nie odświeża miejsca po cieniu).
+// Dlatego przy każdej zmianie wymuszamy narysowanie całego obszaru kart od nowa: zmieniamy mu tło
+// na inne tylko z nazwy (ten sam kolor co tło strony, inna przezroczystość).
+let odmalowania = 0;
+function odmaluj() {
+  el.main.style.backgroundColor = (odmalowania++ % 2) ? "rgba(255, 248, 243, .6)" : "rgba(255, 248, 243, .5)";
+}
+
+// Podmienia zawartość obszaru kart na nowy element (stary znika w całości, razem z cieniami).
+function wstaw(zawartosc, opis) {
+  const nowe = document.createElement("div");
+  nowe.id = "slowo";
+  if (opis) { nowe.setAttribute("role", "img"); nowe.setAttribute("aria-label", opis); }
+  nowe.appendChild(zawartosc);
+  el.slowo.replaceWith(nowe);
+  el.slowo = nowe;
+  odmaluj();
+  return nowe;
+}
+
+function rysuj(x, animuj) {
   if (!x) {
-    el.slowo.innerHTML = '<p class="pusto">Brak ' + (trybZdan() ? "zdań" : "słów") + ' dla tych ustawień. Zmień wybór albo ustawienia.</p>';
-    el.slowo.removeAttribute("aria-label");
+    wstaw(komunikat("Brak " + (trybZdan() ? "zdań" : "słów") + " dla tych ustawień. Zmień wybór albo ustawienia."));
     $("obroc").hidden = true;
     return;
   }
   const { w, wiersze } = uklad(x.w);
-  el.slowo.style.setProperty("--w", w + "px");
-  el.slowo.style.setProperty("--odstep-slow", (ODSTEP_SLOW * w) + "px");
-  el.slowo.style.setProperty("--odstep-wierszy", (ODSTEP_WIERSZY * w) + "px");
-  $("obroc").hidden = !(w < 90 && window.innerHeight > window.innerWidth);
-  el.slowo.setAttribute("aria-label", x.s);
+  const karty = document.createDocumentFragment();
   let nr = 0;
   const wszystkich = x.w.reduce((s, k) => s + k.length, 0);
   for (const wiersz of wiersze) {
     const linia = document.createElement("div");
     linia.className = "linia";
-    for (const karty of wiersz) {
+    for (const kartyWyrazu of wiersz) {
       const wyraz = document.createElement("div");
       wyraz.className = "wyraz";
-      karty.forEach((k, i) => {
+      kartyWyrazu.forEach((k, i) => {
         const karta = nowaKarta(k);
         karta.style.zIndex = String(wszystkich - nr);                    // wcześniejsza karta na wierzchu
         if (i > 0) karta.style.marginLeft = (-KARTY[k].h * w) + "px";
@@ -343,8 +397,30 @@ function pokaz(x, animuj = true) {
       });
       linia.appendChild(wyraz);
     }
-    el.slowo.appendChild(linia);
+    karty.appendChild(linia);
   }
+  $("obroc").hidden = !(w < 90 && window.innerHeight > window.innerWidth);
+  const nowe = wstaw(karty, x.s);
+  nowe.style.setProperty("--w", w + "px");
+  nowe.style.setProperty("--odstep-slow", (ODSTEP_SLOW * w) + "px");
+  nowe.style.setProperty("--odstep-wierszy", (ODSTEP_WIERSZY * w) + "px");
+}
+
+// Pokazuje słowo albo zdanie. Najpierw czeka na obrazki wszystkich potrzebnych kart (zwykle są już w pamięci),
+// a dopiero potem wstawia karty i uruchamia animację.
+let nrPokazu = 0;
+async function pokaz(x, animuj = true) {
+  const nr = ++nrPokazu;
+  biezace = x;
+  const brak = x ? [...new Set(x.w.flat())].filter(k => !gotowe.has(k)) : [];
+  if (brak.length) {
+    // Jeśli pobieranie trwa dłużej, daj znać, że coś się dzieje.
+    const t = setTimeout(() => { if (nr === nrPokazu) wstaw(komunikat("Wczytuję karty…", "wczytuje")); }, 350);
+    await Promise.race([Promise.all(brak.map(wczytaj)), new Promise(ok => setTimeout(ok, 10000))]);
+    clearTimeout(t);
+    if (nr !== nrPokazu) return;   // w międzyczasie wylosowano coś innego
+  }
+  rysuj(x, animuj);
 }
 
 function odmiana(n, jeden, kilka, wiele) {
@@ -385,8 +461,13 @@ function poObroceniu() {
 window.addEventListener("orientationchange", poObroceniu);
 if (screen.orientation) screen.orientation.addEventListener("change", poObroceniu);
 
-// Wczytaj obrazki kart z wyprzedzeniem, żeby losowanie było natychmiastowe.
-Object.values(KARTY).forEach(k => { const i = new Image(); i.src = "karty/" + k.f; });
+// Po rozwinięciu ustawień przewiń stronę tak, żeby było je widać w całości (są pod kartami).
+el.ustawienia.addEventListener("toggle", () => {
+  if (el.ustawienia.open) window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "smooth" });
+});
+
+// Wczytaj wszystkie obrazki kart z wyprzedzeniem, żeby losowanie było natychmiastowe.
+Object.keys(KARTY).forEach(wczytaj);
 odswiez();
 </script>
 </body>
